@@ -2,7 +2,9 @@ import React from 'react'
 
 function StartPage() {
   return (
-    <div>StartPage</div>
+    <div>
+      <button className='btn btn-primary'>cd</button>
+    </div>
   )
 }
 
