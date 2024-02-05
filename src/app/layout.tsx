@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import StartPage from "./pages/StartPage/StartPage";
 import Head from 'next/head'
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Adogtame - Adopción de Mascotas",
@@ -24,8 +20,9 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <body className={inter.className}>
-        <StartPage />
+      <body>
+        {children}
+        {/* <StartPage /> */}
       </body>
     </html>
   );
