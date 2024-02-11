@@ -1,6 +1,7 @@
 import React from 'react'
 import { Caveat } from "next/font/google";
 import Image from 'next/image'
+import Link from 'next/link'
 
 const caveat = Caveat({ subsets: ["latin"] });
 
@@ -30,7 +31,7 @@ const Index: React.FC = () => {
               </div>
 
               <div className="mb-4">
-                <button type="submit" className='btn w-100' style={{ backgroundColor: "#b3a5d4" }}>Iniciar Sesión</button>
+                <button type="submit" className='btn w-100'>Iniciar Sesión</button>
               </div>
 
               <hr />
@@ -39,7 +40,7 @@ const Index: React.FC = () => {
           </form>
 
           <div className="card text-center p-2 py-3 d-flex mb-3" style={{ width: 400 }}>
-            <p className='m-0'>¿No tienes cuenta?  <a href="" className='text-decoration-none'>Regístrate</a></p>
+            <p className='m-0'>¿No tienes cuenta?  <Link href="/registrer" className='text-decoration-none'>Regístrate</Link></p>
           </div>
 
           <div className="text-center" style={{ width: 400 }}>
