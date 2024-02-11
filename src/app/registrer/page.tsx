@@ -11,6 +11,7 @@ const Registrer: React.FC = () => {
     const [name, setName] = useState<string>("");
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+    const [age, setAge] = useState<string>("");
     const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true);
 
     const registrerNewUser = (): void => {
@@ -27,6 +28,10 @@ const Registrer: React.FC = () => {
 
     const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>): void => {
         setUsername(event.target.value);
+    };
+
+    const handleAgeChange = (event: ChangeEvent<HTMLInputElement>): void => {
+        setAge(event.target.value);
     };
 
     const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -59,6 +64,11 @@ const Registrer: React.FC = () => {
                 <div className="form-floating mb-3">
                     <input type="text" className="form-control" value={name} onChange={handleNameChange} id="InputNameRegistrer" placeholder="Nombre completo" required />
                     <label>Nombre completo</label>
+                </div>
+
+                <div className="form-floating mb-3">
+                    <input type="number" className="form-control" value={age} onChange={handleAgeChange} id="InputAgeRegistrer" placeholder="Edad" required />
+                    <label>Edad</label>
                 </div>
 
                 <div className="form-floating mb-3">
