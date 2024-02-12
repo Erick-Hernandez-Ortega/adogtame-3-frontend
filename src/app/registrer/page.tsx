@@ -3,6 +3,7 @@ import React, { useState, ChangeEvent } from 'react';
 import { Caveat } from "next/font/google";
 import Link from 'next/link';
 import Image from 'next/image';
+import axios from 'axios';
 
 const caveat = Caveat({ subsets: ["latin"] });
 
@@ -23,6 +24,9 @@ const Registrer: React.FC = () => {
     };
 
     const handleNameChange = (event: ChangeEvent<HTMLInputElement>): void => {
+        // Si contiene algún número, no actualices el estado
+        if (/\d/.test(event.target.value)) return;
+        
         setName(event.target.value);
     };
 
@@ -47,7 +51,7 @@ const Registrer: React.FC = () => {
     };
 
     return (
-        <main className='w-100 d-flex justify-content-center flex-column align-items-center min-vh-100'>
+        <main className='w-100 d-flex justify-content-center flex-column align-items-center min-vh-100 py-3'>
             <form className='card p-3 mb-3' style={{ width: 350 }} onSubmit={registrerNewUser}>
                 <h1 className={`${caveat.className} display-4 mb-4 text-center`}>Adogtame</h1>
 
