@@ -3,7 +3,7 @@ import React, { useState, ChangeEvent } from 'react';
 import { Caveat } from "next/font/google";
 import Link from 'next/link';
 import Image from 'next/image';
-import axios from 'axios';
+import axios, { AxiosResponse, AxiosError } from 'axios';
 
 const caveat = Caveat({ subsets: ["latin"] });
 
@@ -16,7 +16,21 @@ const Registrer: React.FC = () => {
     const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true);
 
     const registrerNewUser = (): void => {
-        console.log("hola");
+        const newUser: {} = {
+            email,
+            name,
+            username,
+            password,
+            age
+        };
+
+        axios.post("http://localhost:3001/user", newUser)
+            .then((response: AxiosResponse) => {
+                console.log(response);
+            })
+            .catch((error: AxiosError) => {
+                console.error('Error:', error);
+            });
     }
 
     const handleEmailChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -26,7 +40,7 @@ const Registrer: React.FC = () => {
     const handleNameChange = (event: ChangeEvent<HTMLInputElement>): void => {
         // Si contiene algún número, no actualices el estado
         if (/\d/.test(event.target.value)) return;
-        
+
         setName(event.target.value);
     };
 
@@ -52,7 +66,7 @@ const Registrer: React.FC = () => {
 
     return (
         <main className='w-100 d-flex justify-content-center flex-column align-items-center min-vh-100 py-3'>
-            <form className='card p-3 mb-3' style={{ width: 350 }} onSubmit={registrerNewUser}>
+            <form className='card p-3 mb-3' style={{ width: 350 }}>
                 <h1 className={`${caveat.className} display-4 mb-4 text-center`}>Adogtame</h1>
 
                 <h2 className='h5 text-secondary text-center mb-3'>
@@ -89,7 +103,7 @@ const Registrer: React.FC = () => {
                 </div>
 
                 <div className="mb-4">
-                    <button type="submit" className='btn w-100' disabled={!areAllFieldsFilled()}>Registrarte</button>
+                    <button type="button" className='btn w-100' onClick={registrerNewUser} disabled={!areAllFieldsFilled() && isPasswordValid}>Registrarte</button>
                 </div>
             </form>
 
