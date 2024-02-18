@@ -6,10 +6,12 @@ import Image from 'next/image';
 import axios, { AxiosResponse, AxiosError } from 'axios';
 import Swal from 'sweetalert2';
 import { Response, User } from '@/types/apiTypes';
+import { useRouter } from 'next/navigation';
 
 const caveat = Caveat({ subsets: ["latin"] });
 
 const Registrer: React.FC = () => {
+    const router = useRouter();
     const [email, setEmail] = useState<string>("");
     const [name, setName] = useState<string>("");
     const [username, setUsername] = useState<string>("");
@@ -34,7 +36,10 @@ const Registrer: React.FC = () => {
                     text: `Tu cuenta ha sido creada`,
                     icon: "success",
                     confirmButtonColor: "#a08bc7",
-                  });
+                    didClose: () => {
+                        router.push("/");
+                    },
+                });
             })
             .catch((error: AxiosError) => {
                 const errorMessage = error.response?.data as Response;
@@ -44,9 +49,9 @@ const Registrer: React.FC = () => {
                     text: `${errorMessage.message}`,
                     icon: "error",
                     confirmButtonColor: "#a08bc7",
-                  });
+                });
             });
-    }
+    };
 
     const handleEmailChange = (event: ChangeEvent<HTMLInputElement>): void => {
         setEmail(event.target.value);
@@ -134,7 +139,7 @@ const Registrer: React.FC = () => {
                 </div>
             </div>
         </main>
-    )
+    );
 }
 
 export default Registrer
