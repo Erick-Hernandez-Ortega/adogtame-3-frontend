@@ -4,6 +4,8 @@ import { Caveat } from "next/font/google";
 import Link from 'next/link';
 import Image from 'next/image';
 import axios, { AxiosResponse, AxiosError } from 'axios';
+import Swal from 'sweetalert2';
+import { Response, User } from '@/types/apiTypes';
 
 const caveat = Caveat({ subsets: ["latin"] });
 
@@ -16,20 +18,33 @@ const Registrer: React.FC = () => {
     const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true);
 
     const registrerNewUser = (): void => {
-        const newUser: {} = {
-            email,
-            name,
-            username,
+        const newUser: User = {
+            email: email.trim(),
+            name: name.trim(),
+            username: username.trim(),
             password,
             age
         };
 
         axios.post("http://localhost:3001/user", newUser)
             .then((response: AxiosResponse) => {
-                console.log(response);
+                // console.log(response);
+                Swal.fire({
+                    title: "Exito!",
+                    text: `Tu cuenta ha sido creada`,
+                    icon: "success",
+                    confirmButtonColor: "#a08bc7",
+                  });
             })
             .catch((error: AxiosError) => {
-                console.error('Error:', error);
+                const errorMessage = error.response?.data as Response;
+                // console.error('Error:', errorMessage);
+                Swal.fire({
+                    title: "Error!",
+                    text: `${errorMessage.message}`,
+                    icon: "error",
+                    confirmButtonColor: "#a08bc7",
+                  });
             });
     }
 
