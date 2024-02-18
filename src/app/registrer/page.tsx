@@ -81,7 +81,7 @@ const Registrer: React.FC = () => {
     };
 
     const areAllFieldsFilled = (): boolean => {
-        return email !== "" && name !== "" && username !== "" && password !== "";
+        return email !== "" && name !== "" && username !== "" && password !== "" && age !== "";
     };
 
     return (
@@ -123,7 +123,7 @@ const Registrer: React.FC = () => {
                 </div>
 
                 <div className="mb-4">
-                    <button type="button" className='btn w-100' onClick={registrerNewUser} disabled={!areAllFieldsFilled() && isPasswordValid}>Registrarte</button>
+                    <button type="button" className='btn w-100' onClick={registrerNewUser} disabled={!areAllFieldsFilled() || !isPasswordValid}>Registrarte</button>
                 </div>
             </form>
 
