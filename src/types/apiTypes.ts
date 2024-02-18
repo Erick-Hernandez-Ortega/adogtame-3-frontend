@@ -11,4 +11,9 @@ interface User {
     age: string;
 }
 
-export type { Response, User };
+interface UserLogin {
+    email: string;
+    password: string;
+}
+
+export type { Response, User, UserLogin };
