@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   icons: { icon: "img/ADOGTAME_LOGO.png" }
 };
 
+// TODO instalar iconos
+// TODO poner un icono de un ojo para que puedan ver la contraseña en inicio de sesion y registro
+
 export default function RootLayout({
   children,
 }: Readonly<{
