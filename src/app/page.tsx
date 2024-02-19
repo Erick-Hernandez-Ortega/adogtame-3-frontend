@@ -23,7 +23,7 @@ const Index: React.FC = () => {
     setPassword(event.target.value);
   };
 
-  const hanldeLogin = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleLogin = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
     const logUser: UserLogin = {
       email: email.trim(),
@@ -56,7 +56,7 @@ const Index: React.FC = () => {
         </div>
 
         <div className='w-100 align-items-center align-items-lg-start d-flex flex-column'>
-          <form className='card p-3 mb-3' onSubmit={hanldeLogin} style={{ width: 400, height: 450 }}>
+          <form className='card p-3 mb-3' onSubmit={handleLogin} style={{ width: 400, height: 450 }}>
             <div className='card-body text-center'>
               <h1 className={`${caveat.className} display-4 mb-5`}>Adogtame</h1>
 
