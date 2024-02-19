@@ -80,7 +80,7 @@ const Index: React.FC = () => {
           </form>
 
           <div className="card text-center p-2 py-3 d-flex mb-3" style={{ width: 400 }}>
-            <p className='m-0'>¿No tienes cuenta?  <Link href="/registrer" className='text-decoration-none'>Regístrate</Link></p>
+            <p className='m-0'>¿No tienes cuenta?  <Link href="/registrar" className='text-decoration-none'>Regístrate</Link></p>
           </div>
 
           <div className="text-center" style={{ width: 400 }}>
