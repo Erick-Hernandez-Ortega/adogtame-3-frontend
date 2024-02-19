@@ -34,7 +34,7 @@ const Registrer: React.FC = () => {
             const responseMessage: Response = responseNewUser.data;
             // console.log(responseMessage);
 
-            if (responseMessage.status == "Exito") {
+            if (responseMessage.status == "success") {
                 Swal.fire({
                     title: "Exito!",
                     text: `Tu cuenta ha sido creada`,

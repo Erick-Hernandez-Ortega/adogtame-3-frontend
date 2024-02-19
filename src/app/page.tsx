@@ -5,13 +5,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Swal from 'sweetalert2';
 import { userLogin } from '@/utils/userAPI';
-import { UserLogin } from '@/types/apiTypes';
+import { AuthResponse, UserLogin } from '@/types/apiTypes';
+import { useRouter } from 'next/navigation';
 import "./globals.css";
 
 const caveat = Caveat({ subsets: ["latin"] });
 
 const Index: React.FC = () => {
-
+  const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -31,9 +32,17 @@ const Index: React.FC = () => {
     };
     try {
       const userAuth = await userLogin(logUser);
-      //console.log(userAuth);
+      const responseAuth: AuthResponse = userAuth.data;
+
+      console.log(responseAuth);
       setEmail("");
       setPassword("");
+
+      if (responseAuth.status == "success") {
+        router.push("home");
+      } else {
+        throw new Error("Algo fallo");
+      }
     } catch (error: any) {
       const errorMessage = (error.response?.data as { error: string })?.error;
       console.error('Error en la autenticación:', errorMessage);
@@ -42,7 +51,7 @@ const Index: React.FC = () => {
         text: `Revise el correo, usuario o la contraseña`,
         icon: "error",
         confirmButtonColor: "#a08bc7",
-    });
+      });
     }
   };
 
