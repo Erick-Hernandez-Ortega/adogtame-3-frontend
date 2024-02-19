@@ -3,10 +3,11 @@ import React, { useState, ChangeEvent } from 'react';
 import { Caveat } from "next/font/google";
 import Link from 'next/link';
 import Image from 'next/image';
-import axios, { AxiosResponse, AxiosError } from 'axios';
+import { AxiosResponse } from 'axios';
 import Swal from 'sweetalert2';
 import { Response, User } from '@/types/apiTypes';
 import { useRouter } from 'next/navigation';
+import { createNewUser } from '@/utils/userAPI';
 
 const caveat = Caveat({ subsets: ["latin"] });
 
@@ -19,7 +20,7 @@ const Registrer: React.FC = () => {
     const [age, setAge] = useState<string>("");
     const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true);
 
-    const registrerNewUser = (): void => {
+    const registrerNewUser = async (): Promise<void> => {
         const newUser: User = {
             email: email.trim(),
             name: name.trim(),
@@ -28,9 +29,12 @@ const Registrer: React.FC = () => {
             age
         };
 
-        axios.post("http://localhost:3001/user", newUser)
-            .then((response: AxiosResponse) => {
-                // console.log(response);
+        try {
+            const responseNewUser: AxiosResponse = await createNewUser(newUser);
+            const responseMessage: Response = responseNewUser.data;
+            // console.log(responseMessage);
+
+            if (responseMessage.status == "Exito") {
                 Swal.fire({
                     title: "Exito!",
                     text: `Tu cuenta ha sido creada`,
@@ -40,17 +44,19 @@ const Registrer: React.FC = () => {
                         router.push("/");
                     },
                 });
-            })
-            .catch((error: AxiosError) => {
-                const errorMessage = error.response?.data as Response;
-                // console.error('Error:', errorMessage);
-                Swal.fire({
-                    title: "Error!",
-                    text: `${errorMessage.message}`,
-                    icon: "error",
-                    confirmButtonColor: "#a08bc7",
-                });
+            } else {
+                throw new Error("Algo puede ir mal");
+            };
+        } catch (error: any) {
+            const errorMessage = error.response?.data as Response;
+            // console.error('Error:', errorMessage);
+            Swal.fire({
+                title: "Error!",
+                text: `${errorMessage.message}`,
+                icon: "error",
+                confirmButtonColor: "#a08bc7",
             });
+        }
     };
 
     const handleEmailChange = (event: ChangeEvent<HTMLInputElement>): void => {
