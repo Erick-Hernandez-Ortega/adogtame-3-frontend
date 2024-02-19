@@ -1,11 +1,50 @@
-import React from 'react'
+'use client'
+import React, { useState, ChangeEvent, FormEvent } from 'react'
 import { Caveat } from "next/font/google";
 import Image from 'next/image'
 import Link from 'next/link'
+import Swal from 'sweetalert2';
+import { userLogin } from '@/utils/userAPI';
+import { UserLogin } from '@/types/apiTypes';
 
 const caveat = Caveat({ subsets: ["latin"] });
 
 const Index: React.FC = () => {
+
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  const handleEmailChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setPassword(event.target.value);
+  };
+
+  const hanldeLogin = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+    event.preventDefault();
+    const logUser: UserLogin = {
+      email: email.trim(),
+      password: password
+    };
+    try {
+      const userAuth = await userLogin(logUser);
+      //console.log(userAuth);
+      setEmail("");
+      setPassword("");
+    } catch (error: any) {
+      const errorMessage = (error.response?.data as { error: string })?.error;
+      console.error('Error en la autenticación:', errorMessage);
+      Swal.fire({
+        title: "Error!",
+        text: `Revise el correo, usuario o la contraseña`,
+        icon: "error",
+        confirmButtonColor: "#a08bc7",
+    });
+    }
+  };
+
   return (
     <main className='vh-100 d-flex justify-content-center  align-items-center '>
       <article className='w-100 d-flex' style={{ height: "85%" }}>
@@ -16,17 +55,17 @@ const Index: React.FC = () => {
         </div>
 
         <div className='w-100 align-items-center align-items-lg-start d-flex flex-column'>
-          <form className='card p-3 mb-3' style={{ width: 400, height: 450 }}>
+          <form className='card p-3 mb-3' onSubmit={hanldeLogin} style={{ width: 400, height: 450 }}>
             <div className='card-body text-center'>
               <h1 className={`${caveat.className} display-4 mb-5`}>Adogtame</h1>
 
               <div className="form-floating mb-3">
-                <input type="text" className="form-control" id="InputUser" placeholder="Usuario o Correo electronico" />
+                <input type="text" className="form-control" id="InputUser" value={email} onChange={handleEmailChange} placeholder="Usuario o Correo electronico" />
                 <label>Usuario o Correo electronico</label>
               </div>
 
               <div className="form-floating mb-3">
-                <input type="password" className="form-control" id="InputPassword" placeholder="Contraseña" />
+                <input type="password" className="form-control" id="InputPassword" value={password} onChange={handlePasswordChange} placeholder="Contraseña" />
                 <label>Contraseña</label>
               </div>
 
