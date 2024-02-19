@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Swal from 'sweetalert2';
 import { userLogin } from '@/utils/userAPI';
 import { UserLogin } from '@/types/apiTypes';
+import "./globals.css";
 
 const caveat = Caveat({ subsets: ["latin"] });
 
