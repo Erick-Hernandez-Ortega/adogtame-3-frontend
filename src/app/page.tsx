@@ -3,10 +3,11 @@ import React, { useState, ChangeEvent, FormEvent } from 'react'
 import { Caveat } from "next/font/google";
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
 import { userLogin } from '@/utils/userAPI';
-import { UserLogin } from '@/types/apiTypes';
+import { AuthResponse, UserLogin } from '@/types/apiTypes';
+import { useRouter } from 'next/navigation';
+import "./globals.css";
 
 const caveat = Caveat({ subsets: ["latin"] });
 
@@ -23,7 +24,7 @@ const Index: React.FC = () => {
     setPassword(event.target.value);
   };
 
-  const hanldeLogin = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleLogin = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
     const logUser: UserLogin = {
       email: email.trim(),
@@ -36,6 +37,17 @@ const Index: React.FC = () => {
       setPassword("");
       localStorage.setItem('token', userAuth.data.token);
       router.push('/home');
+      const responseAuth: AuthResponse = userAuth.data;
+
+      console.log(responseAuth);
+      setEmail("");
+      setPassword("");
+
+      if (responseAuth.status == "success") {
+        router.push("home");
+      } else {
+        throw new Error("Algo fallo");
+      }
     } catch (error: any) {
       const errorMessage = (error.response?.data as { error: string })?.error;
       console.error('Error en la autenticación:', errorMessage);
@@ -58,7 +70,7 @@ const Index: React.FC = () => {
         </div>
 
         <div className='w-100 align-items-center align-items-lg-start d-flex flex-column'>
-          <form className='card p-3 mb-3' onSubmit={hanldeLogin} style={{ width: 400, height: 450 }}>
+          <form className='card p-3 mb-3' onSubmit={handleLogin} style={{ width: 400, height: 450 }}>
             <div className='card-body text-center'>
               <h1 className={`${caveat.className} display-4 mb-5`}>Adogtame</h1>
 
@@ -82,7 +94,7 @@ const Index: React.FC = () => {
           </form>
 
           <div className="card text-center p-2 py-3 d-flex mb-3" style={{ width: 400 }}>
-            <p className='m-0'>¿No tienes cuenta?  <Link href="/registrer" className='text-decoration-none'>Regístrate</Link></p>
+            <p className='m-0'>¿No tienes cuenta?  <Link href="/registrar" className='text-decoration-none'>Regístrate</Link></p>
           </div>
 
           <div className="text-center" style={{ width: 400 }}>

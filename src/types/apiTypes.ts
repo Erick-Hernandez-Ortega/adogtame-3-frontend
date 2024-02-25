@@ -16,4 +16,9 @@ interface UserLogin {
     password: string;
 }
 
-export type { Response, User, UserLogin };
+interface AuthResponse {
+    status: string;
+    token: string;
+}
+
+export type { Response, User, UserLogin, AuthResponse };
