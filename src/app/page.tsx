@@ -36,13 +36,11 @@ const Index: React.FC = () => {
       setEmail("");
       setPassword("");
       localStorage.setItem('token', userAuth.data.token);
-      router.push('/home');
       const responseAuth: AuthResponse = userAuth.data;
-
-      console.log(responseAuth);
+      //console.log(responseAuth);
       setEmail("");
       setPassword("");
-
+      router.push('/home');
       if (responseAuth.status == "success") {
         router.push("home");
       } else {

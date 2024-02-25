@@ -1,5 +1,5 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
-import { createNewUserAPIURL, loginAPIURL } from "@/constants/api-urls";
+import { createNewUserAPIURL, loginAPIURL, logoutAPIURL } from "@/constants/api-urls";
 import { User, UserLogin } from "@/types/apiTypes";
 
 export const userLogin = async (user: UserLogin): Promise<AxiosResponse> => {
@@ -21,5 +21,19 @@ export const createNewUser = async (newUser: User) => {
         })
         .catch((error: AxiosError) => {
             return Promise.reject(error);
+        });
+};
+
+export const userLogout = async (token: String | null) => {
+    return await axios.post(logoutAPIURL, null, {
+        headers: {
+            'Authorization': token ? `${token}` : '',
+        }
+    })
+        .then((respone: AxiosResponse) => {
+            return respone;
+        })
+        .catch((error: AxiosError) => {
+            return error;
         });
 };
