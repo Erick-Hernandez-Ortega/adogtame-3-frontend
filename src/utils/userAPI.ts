@@ -13,7 +13,7 @@ export const userLogin = async (user: UserLogin): Promise<AxiosResponse> => {
         });
 };
 
-export const createNewUser = async (newUser: User) => {
+export const createNewUser = async (newUser: User): Promise<AxiosResponse | AxiosError> => {
     return await axios.post(createNewUserAPIURL, newUser)
         .then((response: AxiosResponse) => {
             // console.log(response);
@@ -24,7 +24,7 @@ export const createNewUser = async (newUser: User) => {
         });
 };
 
-export const userLogout = async (token: String | null) => {
+export const userLogout = async (token: String | null): Promise<AxiosResponse | AxiosError> => {
     return await axios.post(logoutAPIURL, null, {
         headers: {
             'Authorization': token ? `${token}` : '',
