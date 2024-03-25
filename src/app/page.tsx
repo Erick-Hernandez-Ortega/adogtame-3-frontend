@@ -4,6 +4,7 @@ import { Caveat } from "next/font/google";
 import { useRouter } from 'next/navigation';
 import { userLogout } from '@/utils/userAPI';
 import { AxiosError, AxiosResponse } from 'axios';
+import Sidebar from './components/Sidebar/sidebar';
 
 const caveat = Caveat({ subsets: ["latin"] });
 
@@ -27,9 +28,10 @@ const Home: React.FC = () => {
     }, []);
 
     return (
-        <main className='w-100 d-flex justify-content-center flex-column align-items-center min-vh-100 py-3'>
-            <h1>Home component</h1>
-            <button onClick={handleLogout}>Cerrar sesion</button>
+        <main className='d-flex flex-fill min-vh-100'>
+            <Sidebar/>
+            {/* <h1>Home component</h1>
+            <button onClick={handleLogout}>Cerrar sesion</button> */}
         </main>
     );
 }

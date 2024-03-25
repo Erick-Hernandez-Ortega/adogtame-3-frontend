@@ -30,7 +30,8 @@ const Registrer: React.FC = () => {
         };
 
         try {
-            const responseNewUser: AxiosResponse = await createNewUser(newUser);
+            // TODO fix this any
+            const responseNewUser: any = await createNewUser(newUser);
             const responseMessage: Response = responseNewUser.data;
             // console.log(responseMessage);
 

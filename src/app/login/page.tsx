@@ -1,12 +1,13 @@
 'use client'
 import React, { useState, ChangeEvent, FormEvent } from 'react'
 import { Caveat } from "next/font/google";
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from 'next/image';
+import Link from 'next/link';
 import Swal from 'sweetalert2';
 import { userLogin } from '@/utils/userAPI';
 import { AuthResponse, UserLogin } from '@/types/apiTypes';
 import { useRouter } from 'next/navigation';
+import { AxiosResponse } from 'axios';
 // import "./globals.css";
 
 const caveat = Caveat({ subsets: ["latin"] });
@@ -31,7 +32,7 @@ const Login: React.FC = () => {
       password: password
     };
     try {
-      const userAuth = await userLogin(logUser);
+      const userAuth: AxiosResponse = await userLogin(logUser);
       //console.log(userAuth.data);
       setEmail("");
       setPassword("");
@@ -47,7 +48,7 @@ const Login: React.FC = () => {
         throw new Error("Algo fallo");
       }
     } catch (error: any) {
-      const errorMessage = (error.response?.data as { error: string })?.error;
+      const errorMessage: string = (error.response?.data as { error: string })?.error;
       console.error('Error en la autenticación:', errorMessage);
       Swal.fire({
         title: "Error!",

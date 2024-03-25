@@ -1,0 +1,12 @@
+.nav-link.active {
+  background-color: var(--btn-default) !important;
+}
+
+.nav-link:hover {
+  background-color: var(--btn-diseable);
+  color: #382a4b;
+}
+
+#adogtameTitle {
+  font-size: 2.5rem;
+}
