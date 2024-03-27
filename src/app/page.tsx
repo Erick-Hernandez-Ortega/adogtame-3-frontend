@@ -29,7 +29,7 @@ const Home: React.FC = () => {
 
     return (
         <main className='d-flex flex-fill min-vh-100'>
-            <Sidebar/>
+            <Sidebar logout={handleLogout} />
             {/* <h1>Home component</h1>
             <button onClick={handleLogout}>Cerrar sesion</button> */}
         </main>

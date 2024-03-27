@@ -1,13 +1,24 @@
-import React from 'react'
+import React, { MouseEventHandler, useState } from 'react'
 import { Caveat } from "next/font/google";
 import Link from 'next/link';
 import "./styles.css";
 import { usePathname } from 'next/navigation'
+import PageProps from '@/types/sidebarTypes';
 
 const caveat = Caveat({ subsets: ["latin"] });
 
-const Sidebar = () => {
+const Sidebar: React.FC<PageProps> = ({ logout }) => {
     const pathname: string = usePathname();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const toggleMenu = (): MouseEventHandler<HTMLAnchorElement> | undefined => {
+        setIsMenuOpen(!isMenuOpen);
+        return undefined;
+    };
+
+    const handleLogout = (): void => {
+        logout();
+    }
 
     return (
         <div className="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style={{ width: '280px' }}>
@@ -50,16 +61,16 @@ const Sidebar = () => {
             </ul>
             <hr />
             <div className="dropdown">
-                <a href="#" className="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <a href="#" className="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" onClick={toggleMenu} data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
                     <strong>mdo</strong>
                 </a>
-                <ul className="dropdown-menu text-small shadow" style={{display: ''}}>
+                <ul className={`dropdown-menu text-small shadow ${isMenuOpen ? 'show' : ''}`}>
                     <li><a className="dropdown-item" href="#">New project...</a></li>
                     <li><a className="dropdown-item" href="#">Settings</a></li>
                     <li><a className="dropdown-item" href="#">Profile</a></li>
                     <li><hr className="dropdown-divider" /></li>
-                    <li><a className="dropdown-item" href="#">Sign out</a></li>
+                    <li><a className="dropdown-item" href="#" onClick={handleLogout}>Cerrar sesión</a></li>
                 </ul>
             </div>
         </div>
