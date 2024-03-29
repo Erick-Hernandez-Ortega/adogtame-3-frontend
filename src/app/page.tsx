@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { userLogout } from '@/utils/userAPI';
 import { AxiosError, AxiosResponse } from 'axios';
 import Sidebar from './components/Sidebar/sidebar';
+import PublicationCard from './components/PublicationCard/publicationCard';
 
 const caveat = Caveat({ subsets: ["latin"] });
 
@@ -30,6 +31,7 @@ const Home: React.FC = () => {
     return (
         <main className='d-flex flex-fill min-vh-100'>
             <Sidebar logout={handleLogout} />
+            <PublicationCard/>
             {/* <h1>Home component</h1>
             <button onClick={handleLogout}>Cerrar sesion</button> */}
         </main>
