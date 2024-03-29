@@ -2,7 +2,7 @@
   background-color: var(--btn-default) !important;
 }
 
-.nav-link:hover {
+.nav-link:hover, .dropdown-item:hover {
   background-color: var(--btn-diseable);
   color: #382a4b;
 }
