@@ -4,11 +4,12 @@ import Link from 'next/link';
 import "./styles.css";
 import { usePathname } from 'next/navigation'
 import PageProps from '@/types/sidebarTypes';
+import Image from 'next/image';
 
 const caveat = Caveat({ subsets: ["latin"] });
 
 const Sidebar: React.FC<PageProps> = ({ logout }) => {
-    const pathname: string = usePathname();
+    const pathname: string | null = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = (): MouseEventHandler<HTMLAnchorElement> | undefined => {
@@ -62,7 +63,7 @@ const Sidebar: React.FC<PageProps> = ({ logout }) => {
             <hr />
             <div className="dropdown">
                 <a href="#" className="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" onClick={toggleMenu} data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
+                    <Image src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
                     <strong>mdo</strong>
                 </a>
                 <ul className={`dropdown-menu text-small shadow ${isMenuOpen ? 'show' : ''}`}>
