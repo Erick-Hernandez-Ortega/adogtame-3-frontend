@@ -29,9 +29,12 @@ const Home: React.FC = () => {
     }, []);
 
     return (
-        <main className='d-flex flex-fill min-vh-100'>
+        <main className='d-flex flex-fill min-vh-100' style={{maxHeight: '100vh'}}>
             <Sidebar logout={handleLogout} />
-            <PublicationCard/>
+            <div className='overflow-scroll d-flex flex-column h-auto w-100 align-items-center gap-3 p-3'>
+              <PublicationCard />
+              <PublicationCard />
+            </div>
             {/* <h1>Home component</h1>
             <button onClick={handleLogout}>Cerrar sesion</button> */}
         </main>

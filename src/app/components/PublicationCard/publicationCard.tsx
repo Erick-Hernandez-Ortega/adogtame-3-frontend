@@ -5,7 +5,7 @@ import { IconBadge, IconMessages, IconHeart } from '@tabler/icons-react';
 const PublicationCard: React.FC = () => {
   // TODO falta dehacerlo funcional
   return (
-    <div className="card text-center border-0">
+    <div className="card text-center border-0" style={{width: 400}}>
       <div className="card-header text-start d-flex align-items-center bg-transparent">
         <Image src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
         <strong>Toni kross</strong>
