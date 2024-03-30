@@ -27,7 +27,6 @@ const Home: React.FC = () => {
             router.push('/')
         } else {
             setToken(userTkn);
-            console.log("ded");
             isLogged = true;
         }
         

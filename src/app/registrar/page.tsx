@@ -135,7 +135,7 @@ const Registrer: React.FC = () => {
             </form>
 
             <div className="card text-center p-2 py-3 d-flex mb-3" style={{ width: 350 }}>
-                <p className='m-0'>¿Tienes una cuenta?  <Link href="/" className='text-decoration-none'>Iniciar sesión</Link></p>
+                <p className='m-0'>¿Tienes una cuenta?  <Link href="/login" className='text-decoration-none'>Iniciar sesión</Link></p>
             </div>
 
             <div className="text-center" style={{ width: 350 }}>

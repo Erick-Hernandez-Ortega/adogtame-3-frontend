@@ -10,7 +10,6 @@ const PublicationCard: React.FC<PageProps> = ({ isLogged }) => {
   // TODO falta dehacerlo funcional
 
   const startAdoptionProcess = (): void => {
-    console.log(isLogged);
     if (isLogged) {
       // Si esta logaeado inicia proceso
     } else {
