@@ -9,7 +9,7 @@ import { IconHomeFilled, IconHome, IconSearch, IconCompass, IconPaw, IconBone, I
 
 const caveat = Caveat({ subsets: ["latin"] });
 
-const Sidebar: React.FC<PageProps> = ({ logout }) => {
+const Sidebar: React.FC<PageProps> = ({ logout, isLogged }) => {
     const pathname: string | null = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -32,70 +32,83 @@ const Sidebar: React.FC<PageProps> = ({ logout }) => {
             <ul className="nav nav-pills flex-column mb-auto">
                 <li className="nav-item">
                     <a href="#" className={`nav-link ${pathname === "/" ? "active" : ""} d-flex gap-2`} aria-current="page">
-                        {pathname === "/" ? <IconHomeFilled /> : <IconHome/>}
+                        {pathname === "/" ? <IconHomeFilled /> : <IconHome />}
                         Inicio
                     </a>
                 </li>
                 <li>
                     <a href="#" className="nav-link link-body-emphasis d-flex gap-2">
-                        <IconSearch/>
+                        <IconSearch />
                         Buscar
                     </a>
                 </li>
                 <li>
                     <a href="#" className="nav-link link-body-emphasis d-flex gap-2">
-                        <IconCompass/>
+                        <IconCompass />
                         Explorar
                     </a>
                 </li>
-                <li>
-                    <a href="#" className="nav-link link-body-emphasis d-flex gap-2">
-                        {/* cambiar a icono llenado cuando este en la ruta */}
-                        <IconPaw/>
-                        Mis mascotas
-                    </a>
-                </li>
-                <li>
-                    <a href="#" className="nav-link link-body-emphasis d-flex gap-2">
-                        {/* cambiar a icono llenado cuando este en la ruta */}
-                        <IconBone/>
-                        Mis adopciones
-                    </a>
-                </li>
-                <li>
-                    <a href="#" className="nav-link link-body-emphasis d-flex gap-2">
-                        {/* cambiar a icono llenado cuando este en la ruta */}
-                        <IconLibraryPlus/>
-                        Crear
-                    </a>
-                </li>
-                <li>
-                    <a href="#" className="nav-link link-body-emphasis d-flex gap-2">
-                        {/* cambiar a icono llenado cuando este en la ruta */}
-                        <IconBadge/>
-                        Guardados
-                    </a>
-                </li>
-                <li>
-                    <a href="#" className="nav-link link-body-emphasis d-flex gap-2">
-                        {/* cambiar a icono llenado cuando este en la ruta */}
-                        <IconMessage/>
-                        Mensajes
-                    </a>
-                </li>
+
+                {isLogged ?
+                    <>
+                        <li>
+                            <a href="#" className="nav-link link-body-emphasis d-flex gap-2">
+                                {/* cambiar a icono llenado cuando este en la ruta */}
+                                <IconPaw />
+                                Mis mascotas
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" className="nav-link link-body-emphasis d-flex gap-2">
+                                {/* cambiar a icono llenado cuando este en la ruta */}
+                                <IconBone />
+                                Mis adopciones
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" className="nav-link link-body-emphasis d-flex gap-2">
+                                {/* cambiar a icono llenado cuando este en la ruta */}
+                                <IconLibraryPlus />
+                                Crear
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" className="nav-link link-body-emphasis d-flex gap-2">
+                                {/* cambiar a icono llenado cuando este en la ruta */}
+                                <IconBadge />
+                                Guardados
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" className="nav-link link-body-emphasis d-flex gap-2">
+                                {/* cambiar a icono llenado cuando este en la ruta */}
+                                <IconMessage />
+                                Mensajes
+                            </a>
+                        </li>
+                    </>
+                    : null
+                }
+
             </ul>
-            <hr />
-            <div className="dropdown">
-                <a href="#" className="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" onClick={toggleMenu} data-bs-toggle="dropdown" aria-expanded="false">
-                    <Image src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
-                    <strong>mdo</strong>
-                </a>
-                <ul className={`dropdown-menu text-small shadow ${isMenuOpen ? 'show' : ''}`}>
-                    <li><a className="dropdown-item d-flex gap-1" href="#"><IconUserCircle/> Perfil</a></li>
-                    <li><hr className="dropdown-divider" /></li>
-                    <li><a className="dropdown-item d-flex gap-1" href="#" onClick={handleLogout}><IconLogout2 size={23} /> Cerrar sesión</a></li>
-                </ul>
-            </div>
+            {
+                isLogged ?
+                    <>
+                        <hr />
+                        <div className="dropdown">
+                            <a href="#" className="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" onClick={toggleMenu} data-bs-toggle="dropdown" aria-expanded="false">
+                                <Image src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
+                                <strong>mdo</strong>
+                            </a>
+                            <ul className={`dropdown-menu text-small shadow ${isMenuOpen ? 'show' : ''}`}>
+                                <li><a className="dropdown-item d-flex gap-1" href="#"><IconUserCircle /> Perfil</a></li>
+                                <li><hr className="dropdown-divider" /></li>
+                                <li><a className="dropdown-item d-flex gap-1" href="#" onClick={handleLogout}><IconLogout2 size={23} /> Cerrar sesión</a></li>
+                            </ul>
+                        </div>
+                    </>
+                    : null
+            }
         </div>
 
     )
