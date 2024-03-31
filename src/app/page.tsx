@@ -18,13 +18,13 @@ const Home: React.FC = () => {
         const response: AxiosResponse | AxiosError = await userLogout(token);
         console.log(response);
         localStorage.removeItem('token');
-        router.push('/');
+        router.push('/login');
     }
 
     useEffect(() => {
         const userTkn: string | null = localStorage.getItem('token');
         if (!userTkn) {
-            router.push('/')
+            router.push('/login')
         } else {
             setToken(userTkn);
             isLogged = true;
