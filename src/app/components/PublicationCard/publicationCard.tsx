@@ -14,12 +14,13 @@ const PublicationCard: React.FC<PageProps> = ({ isLogged }) => {
       // Si esta logaeado inicia proceso
     } else {
       Swal.fire({
-        title: "¡Adopción de Mascotas!",
-        text: `Para iniciar el proceso de adopción, por favor asegúrate de tener una cuenta creada o iniciar sesión.`,
+        title: "¡¿Quién eres?!",
+        text: `Para iniciar el proceso de adopción, por favor asegúrate de iniciar sesión.`,
         icon: "info",
         showCancelButton: true,
-        cancelButtonText: "Cancelar",
+        cancelButtonText: "Seguir navegando",
         confirmButtonColor: "#a08bc7",
+        confirmButtonText: 'Iniciar Sesión',
       }).then((result: SweetAlertResult) => {
         if (result.isConfirmed) {
           router.push("login");
