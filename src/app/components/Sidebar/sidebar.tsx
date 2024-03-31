@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useState } from 'react'
+import React, { MouseEventHandler, useState, useEffect } from 'react'
 import { Caveat } from "next/font/google";
 import Link from 'next/link';
 import "./styles.css";
@@ -10,6 +10,7 @@ import { IconHomeFilled, IconHome, IconSearch, IconCompass, IconPaw, IconBone, I
 const caveat = Caveat({ subsets: ["latin"] });
 
 const Sidebar: React.FC<PageProps> = ({ logout, isLogged }) => {
+    const [token, setToken] = useState<string | null>("");
     const pathname: string | null = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -21,6 +22,17 @@ const Sidebar: React.FC<PageProps> = ({ logout, isLogged }) => {
     const handleLogout = (): void => {
         logout();
     }
+
+    useEffect(() => {
+        const userTkn: string | null = localStorage.getItem('token');
+        if (!userTkn) {
+            setToken("");
+        } else {
+            setToken(userTkn);
+            isLogged = true;
+        }
+
+    }, []);
 
     return (
         <div className="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary d-none d-md-flex" style={{ width: '280px' }}>
@@ -49,7 +61,7 @@ const Sidebar: React.FC<PageProps> = ({ logout, isLogged }) => {
                     </a>
                 </li>
 
-                {isLogged ?
+                {token !== "" ?
                     <>
                         <li>
                             <a href="#" className="nav-link link-body-emphasis d-flex gap-2">
@@ -92,7 +104,7 @@ const Sidebar: React.FC<PageProps> = ({ logout, isLogged }) => {
 
             </ul>
             {
-                isLogged ?
+                token !== "" ?
                     <>
                         <hr />
                         <div className="dropdown">
