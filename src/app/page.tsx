@@ -24,7 +24,7 @@ const Home: React.FC = () => {
     useEffect(() => {
         const userTkn: string | null = localStorage.getItem('token');
         if (!userTkn) {
-            router.push('/login')
+            router.push('/')
         } else {
             setToken(userTkn);
             isLogged = true;
