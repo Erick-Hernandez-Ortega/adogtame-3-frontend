@@ -34,16 +34,13 @@ const Login: React.FC = () => {
     try {
       const userAuth: AxiosResponse = await userLogin(logUser);
       //console.log(userAuth.data);
-      setEmail("");
-      setPassword("");
       localStorage.setItem('token', userAuth.data.token);
       const responseAuth: AuthResponse = userAuth.data;
       //console.log(responseAuth);
       setEmail("");
       setPassword("");
-      router.push('/home');
       if (responseAuth.status == "success") {
-        router.push("home");
+        router.push("/");
       } else {
         throw new Error("Algo fallo");
       }
