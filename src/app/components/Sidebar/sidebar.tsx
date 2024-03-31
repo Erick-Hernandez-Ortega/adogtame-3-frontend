@@ -23,7 +23,7 @@ const Sidebar: React.FC<PageProps> = ({ logout, isLogged }) => {
     }
 
     return (
-        <div className="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style={{ width: '280px' }}>
+        <div className="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary d-none d-md-flex" style={{ width: '280px' }}>
             <Link href="/" className="d-flex mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
                 <span className={`${caveat.className}`} id="adogtameTitle">Adogtame</span>
             </Link>
