@@ -5,7 +5,7 @@ import { LineStyle, BoxStyle } from '@/types/login';
 
 const caveat = Caveat({ subsets: ["latin"] });
 
-// TODO hacer funcional el login ademas de hacerlo responsivo
+// TODO hacer funcional el login y checar si ya es responsivo
 const Login: React.FC = () => {
     const lineStyle: LineStyle = {
         margin: '0px 20px',
