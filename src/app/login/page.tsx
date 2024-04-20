@@ -20,13 +20,13 @@ const Login: React.FC = () => {
     };
 
     return (
-        <main className='d-flex justify-content-center align-items-center  min-vh-100'>
-            <div className="card w-75 h-75 d-flex flex-row" style={boxStyle}>
+        <main className='d-flex justify-content-center align-items-center  min-vh-100 p-2'>
+            <div className="card h-75 d-flex flex-row" style={boxStyle}>
                 <Image src="/img/login/background.jpeg" className='d-none d-lg-block' alt="Adogtame Logo" width={529} height={714} />
                 <section className='w-100 p-4'>
                     <div className='d-flex justify-content-center mt-5 mb-3 '>
-                        <button type="button" style={{ width: 450 }} className='btn btn-light d-flex align-items-center justify-content-center gap-2'>
-                            <Image src="/img/login/icon-google.png" alt="Google Logo" width={20} height={20} />
+                        <button type="button" style={{ width: '90%', border: '1px solid #000000' }} className='btn btn-light d-flex align-items-center justify-content-center gap-2 p-2'>
+                            <Image src="/img/login/icon-google.png" alt="Google Logo" width={25} height={25} />
                             Iniciar sesion
                         </button>
                     </div>
@@ -38,16 +38,16 @@ const Login: React.FC = () => {
                     </div>
 
                     <div className='d-flex flex-column align-items-center gap-2 mb-5'>
-                        <div className="form-floating mb-3">
-                            <input type="email" className="form-control" style={{ width: 450 }} id="floatingInput" placeholder="Correo electronico" />
+                        <div className="form-floating mb-3" style={{ width: '90%' }}>
+                            <input type="email" className="form-control" id="floatingInput" placeholder="Correo electronico" />
                             <label>Correo electronico</label>
                         </div>
-                        <div className="form-floating">
-                            <input type="password" style={{ width: 450 }} className="form-control" id="floatingPassword" placeholder="Contraseña" />
+                        <div className="form-floating" style={{ width: '90%' }}>
+                            <input type="password" className="form-control" id="floatingPassword" placeholder="Contraseña" />
                             <label>Contraseña</label>
                         </div>
-                        <div className="mt-3">
-                            <button type="button" style={{ width: 450 }} className='btn btn-primary'>Iniciar sesion</button>
+                        <div className="mt-3" style={{ width: '90%' }}>
+                            <button type="button" style={{ width: '100%' }} className='btn btn-primary'>Iniciar sesion</button>
                         </div>
                     </div>
 
