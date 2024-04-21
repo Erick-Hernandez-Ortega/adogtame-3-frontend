@@ -2,7 +2,9 @@
 import React, { useState } from 'react';
 import { Caveat } from "next/font/google";
 import Image from 'next/image';
-import { LineStyle, BoxStyle } from '@/types/login';
+import { LineStyle, BoxStyle, LoginSuccessResponse, LoginErrorResponse } from '@/types/login';
+import { userLogin } from '@/utils/userAPI';
+import Swal from 'sweetalert2';
 
 const caveat = Caveat({ subsets: ["latin"] });
 
@@ -28,7 +30,17 @@ const Login: React.FC = () => {
     });
 
     const handleLogin = async (): Promise<void> => {
-        console.log(formLogin);
+        const response: any = await userLogin({ email: formLogin.email, password: formLogin.password });
+
+        if (response.error) {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: response.message,
+            });
+        } else {
+            // localStorage.setItem('token', response.token);
+        }
     }
 
     const validateEmail = (email: string): void => {
@@ -62,7 +74,7 @@ const Login: React.FC = () => {
     return (
         <main className='d-flex justify-content-center align-items-center  min-vh-100 p-2'>
             <div className="card h-75 d-flex flex-row" style={boxStyle}>
-                <Image src="/img/login/background.jpeg" className='d-none d-lg-block' alt="Adogtame Logo" width={529} height={714} />
+                <Image src="/img/login/background.jpeg" priority className='d-none d-lg-block' alt="Adogtame Logo" width={529} height={714} />
                 <section className='w-100 p-4'>
                     <div className='d-flex justify-content-center mt-5 mb-3 '>
                         <button type="button" style={{ width: '90%', border: '1px solid #000000' }} className='btn btn-light d-flex align-items-center justify-content-center gap-2 p-2'>
