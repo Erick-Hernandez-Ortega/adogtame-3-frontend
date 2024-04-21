@@ -1,4 +1,5 @@
-import React from 'react';
+'use client'
+import React, { useState } from 'react';
 import { Caveat } from "next/font/google";
 import Image from 'next/image';
 import { LineStyle, BoxStyle } from '@/types/login';
@@ -18,6 +19,45 @@ const Login: React.FC = () => {
     const boxStyle: BoxStyle = {
         boxShadow: 'rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px'
     };
+    // ? Esto es una mejora de optimizacion me enseñaron en la chamba 
+    const [formLogin, setFormLogin] = useState({
+        email: '',
+        emailClass: '',
+        password: '',
+        passwordClass: '',
+    });
+
+    const handleLogin = async (): Promise<void> => {
+        console.log(formLogin);
+    }
+
+    const validateEmail = (email: string): void => {
+        const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (emailRegex.test(email)) {
+            // Email válido
+            setFormLogin({ ...formLogin, email: email, emailClass: 'is-valid' });
+        } else {
+            // Email inválido
+            setFormLogin({ ...formLogin, email: email, emailClass: 'is-invalid' });
+        }
+    }
+
+    const validatePassword = (password: string): void => {
+        const passwordRegex: RegExp = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+        if (passwordRegex.test(password)) {
+            // Password válida
+            setFormLogin({ ...formLogin, password: password, passwordClass: 'is-valid' });
+        } else {
+            // Password inválida
+            setFormLogin({ ...formLogin, password: password, passwordClass: 'is-invalid' });
+        }
+    }
+
+    const isLoginFormValid = (): boolean => {
+        return formLogin.emailClass === 'is-valid' && formLogin.passwordClass === 'is-valid';
+    }
 
     return (
         <main className='d-flex justify-content-center align-items-center  min-vh-100 p-2'>
@@ -39,15 +79,21 @@ const Login: React.FC = () => {
 
                     <div className='d-flex flex-column align-items-center gap-2 mb-5'>
                         <div className="form-floating mb-3" style={{ width: '90%' }}>
-                            <input type="email" className="form-control" id="floatingInput" placeholder="Correo electronico" />
+                            <input type="email" className={`form-control ${formLogin.emailClass}`} id="floatingInput" value={formLogin.email} onChange={(e) => validateEmail(e.target.value)} placeholder="Correo electronico" />
                             <label>Correo electronico</label>
+                            <div id="validationEmail" className="invalid-feedback">
+                                Por favor introduzca un correo valido.
+                            </div>
                         </div>
                         <div className="form-floating" style={{ width: '90%' }}>
-                            <input type="password" className="form-control" id="floatingPassword" placeholder="Contraseña" />
+                            <input type="password" className={`form-control ${formLogin.passwordClass}`} value={formLogin.password} onChange={(e) => validatePassword(e.target.value)} id="floatingPassword" placeholder="Contraseña" />
                             <label>Contraseña</label>
+                            <div id="validationPassword" className="invalid-feedback">
+                                Por favor introduzca una contraseña valida.
+                            </div>
                         </div>
                         <div className="mt-3" style={{ width: '90%' }}>
-                            <button type="button" style={{ width: '100%' }} className='btn btn-primary'>Iniciar sesion</button>
+                            <button type="button" style={{ width: '100%' }} className='btn btn-primary' onClick={handleLogin} disabled={!isLoginFormValid()}>Iniciar sesion</button>
                         </div>
                     </div>
 
