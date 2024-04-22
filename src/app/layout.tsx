@@ -6,7 +6,7 @@ import Head from 'next/head'
 export const metadata: Metadata = {
   title: "Adogtame - Adopción de Mascotas",
   description: "Descubre Adogtame, tu plataforma de adopción de mascotas. Regístrate, conecta y encuentra a tu compañero peludo ideal. Sube perfiles de mascotas necesitadas y bríndales un hogar amoroso. ¡Únete hoy a nuestra comunidad y haz la diferencia en las vidas de las mascotas en Adogtame!",
-  icons: { icon: "img/ADOGTAME_LOGO.png" }
+  icons: { icon: "img/logos/ADOGTAME_LOGO.png" }
 };
 
 export default function RootLayout({
