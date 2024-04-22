@@ -2,13 +2,12 @@
 import React, { useState } from 'react';
 import { Caveat } from "next/font/google";
 import Image from 'next/image';
-import { LineStyle, BoxStyle, LoginSuccessResponse, LoginErrorResponse } from '@/types/login';
+import { LineStyle, BoxStyle } from '@/types/login';
 import { userLogin } from '@/utils/userAPI';
 import Swal from 'sweetalert2';
 
 const caveat = Caveat({ subsets: ["latin"] });
 
-// TODO hacer funcional el login y checar si ya es responsivo
 const Login: React.FC = () => {
     const lineStyle: LineStyle = {
         margin: '0px 20px',
