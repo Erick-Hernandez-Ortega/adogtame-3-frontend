@@ -57,6 +57,7 @@ const Register: React.FC = () => {
                 <Image src={"/img/registro/background.svg"} width={700} height={700} alt='circle' style={{
                     position: 'absolute',
                     bottom: -330,
+                    left: 0
                 }} />
             </div>
         </main>
