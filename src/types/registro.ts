@@ -11,3 +11,9 @@ export interface FormRegisterState {
     password: string;
     passwordClass: string;
 }
+
+export interface User {
+    name: string;
+    email: string;
+    password: string;
+}

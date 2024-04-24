@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { BoxStyleRegistro, FormRegisterState } from '@/types/registro';
+import { createNewUser } from '@/utils/userAPI';
 
 // TODO falta hacer la responsiva y funcional
 const Register: React.FC = () => {
@@ -43,7 +44,7 @@ const Register: React.FC = () => {
     }
 
     const validateName = (name: string): void => {
-        const nameRegex: RegExp = /^[a-zA-Z]+$/;
+        const nameRegex: RegExp = /^[a-zA-Z\s]+$/;
 
         if (nameRegex.test(name)) {
             // Nombre válido
@@ -57,6 +58,11 @@ const Register: React.FC = () => {
 
     const isRegistrerFormValid = (): boolean => {
         return formRegister.emailClass === 'is-valid' && formRegister.passwordClass === 'is-valid' && formRegister.nameClass === 'is-valid';
+    }
+
+    const handleRegister = async (): Promise<void> => {
+        const response: any = await createNewUser({ name: formRegister.name, email: formRegister.email, password: formRegister.password });
+        console.log(response);
     }
 
     return (
@@ -91,7 +97,7 @@ const Register: React.FC = () => {
                         </div>
 
                         <div className="mb-3 w-75 z-1">
-                            <button type="button" className='btn btn-primary w-100 ' disabled={!isRegistrerFormValid()}>Registrarse</button>
+                            <button type="button" className='btn btn-primary w-100 ' disabled={!isRegistrerFormValid()} onClick={handleRegister}>Registrarse</button>
                         </div>
                     </div>
                     <Image className='d-none d-lg-block z-1' src={"/icons/registro/emoji-cat.svg"} width={150} height={150} alt='icon cat' />
