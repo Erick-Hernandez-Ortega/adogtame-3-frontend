@@ -16,7 +16,7 @@ const Register: React.FC = () => {
                 <h4 className='text-center'>Tu mejor amigo te espera</h4>
 
                 <div className="d-flex flex-row justify-content-evenly align-items-center">
-                    <Image className='d-none d-lg-block' src={"/icons/registro/emojione-dog.svg"} width={150} height={150} alt='icon dog' />
+                    <Image className='d-none d-lg-block z-1' src={"/icons/registro/emojione-dog.svg"} width={150} height={150} alt='icon dog' />
                     <div className='p-3 d-flex flex-column align-items-center' style={{ width: '800px' }}>
                         <div className="form-floating mb-3 w-75 z-1">
                             <input type="text" className={`form-control`} id="floatingInputName" placeholder="Nombre completo" />
@@ -44,7 +44,7 @@ const Register: React.FC = () => {
                             <button type="button" className='btn btn-primary w-100 '>Registrarse</button>
                         </div>
                     </div>
-                    <Image className='d-none d-lg-block' src={"/icons/registro/emoji-cat.svg"} width={150} height={150} alt='icon cat' />
+                    <Image className='d-none d-lg-block z-1' src={"/icons/registro/emoji-cat.svg"} width={150} height={150} alt='icon cat' />
                 </div>
 
                 <div className='d-flex justify-content-center z-1'>
