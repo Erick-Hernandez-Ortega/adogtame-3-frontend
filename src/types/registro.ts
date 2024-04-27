@@ -6,6 +6,8 @@ export interface BoxStyleRegistro {
 export interface FormRegisterState {
     name: string;
     nameClass: string;
+    username: string;
+    usernameClass: string;
     email: string;
     emailClass: string;
     password: string;
@@ -15,5 +17,7 @@ export interface FormRegisterState {
 export interface User {
     name: string;
     email: string;
+    age: string;
+    username: string;
     password: string;
 }
