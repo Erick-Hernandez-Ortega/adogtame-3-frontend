@@ -33,7 +33,7 @@ const Home: React.FC = () => {
 
     return (
         <>
-            <Navbar />
+                <Navbar />
             <main className='d-flex flex-fill min-vh-100' style={{ maxHeight: '100vh' }}>
                 {/* <h1>Home component</h1>
             <button onClick={handleLogout}>Cerrar sesion</button> */}
