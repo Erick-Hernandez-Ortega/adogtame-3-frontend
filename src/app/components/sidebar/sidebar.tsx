@@ -10,7 +10,7 @@ export const Sidebar: FC = () => {
     const pathname: string = usePathname();
 
     return (
-        <div className="d-flex flex-column flex-shrink-0 p-3" style={{ width: '280px' }}>
+        <aside className="d-flex flex-column flex-shrink-0 p-3" style={{ width: '280px' }}>
             <ul className="nav nav-pills flex-column mb-auto">
                 <li className="nav-item">
                     <Link href="/" className={`nav-link ${pathname === '/' ? 'active' : ''} d-flex align-items-center gap-1`} aria-current="page">
@@ -57,7 +57,7 @@ export const Sidebar: FC = () => {
                     <li><Link className="dropdown-item" href="#">Sign out</Link></li>
                 </ul>
             </div>
-        </div>
+        </aside>
 
     );
 }
