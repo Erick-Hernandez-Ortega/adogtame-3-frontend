@@ -6,6 +6,7 @@ import { LineStyle, BoxStyle } from '@/types/login';
 import { userLogin } from '@/utils/userAPI';
 import Swal from 'sweetalert2';
 import Link from 'next/link';
+import { emailRegex, passwordRegex } from '@/utils/validations';
 
 const caveat = Caveat({ subsets: ["latin"] });
 
@@ -44,8 +45,6 @@ const Login: React.FC = () => {
     }
 
     const validateEmail = (email: string): void => {
-        const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
         if (emailRegex.test(email)) {
             // Email válido
             setFormLogin({ ...formLogin, email: email, emailClass: 'is-valid' });
@@ -56,8 +55,6 @@ const Login: React.FC = () => {
     }
 
     const validatePassword = (password: string): void => {
-        const passwordRegex: RegExp = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
-
         if (passwordRegex.test(password)) {
             // Password válida
             setFormLogin({ ...formLogin, password: password, passwordClass: 'is-valid' });

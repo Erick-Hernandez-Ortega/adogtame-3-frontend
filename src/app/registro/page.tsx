@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { emailRegex, nameRegex, passwordRegex, usernameRegex } from '@/utils/validations';
 
 const Register: React.FC = () => {
     const router = useRouter();
@@ -26,8 +27,6 @@ const Register: React.FC = () => {
     });
 
     const validateEmail = (email: string): void => {
-        const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
         if (emailRegex.test(email)) {
             // Email válido
             setFormRegister({ ...formRegister, email: email, emailClass: 'is-valid' });
@@ -38,8 +37,6 @@ const Register: React.FC = () => {
     }
 
     const validatePassword = (password: string): void => {
-        const passwordRegex: RegExp = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
-
         if (passwordRegex.test(password)) {
             // Password válida
             setFormRegister({ ...formRegister, password: password, passwordClass: 'is-valid' });
@@ -50,8 +47,6 @@ const Register: React.FC = () => {
     }
 
     const validateName = (name: string): void => {
-        const nameRegex: RegExp = /^[a-zA-Z\s]+$/;
-
         if (nameRegex.test(name)) {
             // Nombre válido
             setFormRegister({ ...formRegister, name: name, nameClass: 'is-valid' });
@@ -62,8 +57,6 @@ const Register: React.FC = () => {
     }
 
     const validateUsername = (username: string): void => {
-        const usernameRegex: RegExp = /^[a-zA-Z0-9]+$/;
-
         if (usernameRegex.test(username)) {
             // Username válida
             setFormRegister({ ...formRegister, username: username, usernameClass: 'is-valid' });
