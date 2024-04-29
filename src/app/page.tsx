@@ -5,6 +5,7 @@ import { userLogout } from '@/utils/userAPI';
 import { AxiosError, AxiosResponse } from 'axios';
 import { Navbar } from './components/navbar/navbar';
 import { Sidebar } from './components/sidebar/sidebar';
+import { FiltrerMenu } from './components/filtrer-menu/filtrer-menu';
 
 const caveat = Caveat({ subsets: ["latin"] });
 
@@ -36,7 +37,10 @@ const Home: FC = () => {
             <Navbar />
             <main className='d-flex flex-fill' style={{ maxHeight: '100vh' }}>
                 <Sidebar />
-                <p>deded</p>
+                <article className='d-flex flex-column w-100 '>
+                    <FiltrerMenu />
+                    <p>deded</p>
+                </article>
                 {/* <h1>Home component</h1>
             <button onClick={handleLogout}>Cerrar sesion</button> */}
             </main>
