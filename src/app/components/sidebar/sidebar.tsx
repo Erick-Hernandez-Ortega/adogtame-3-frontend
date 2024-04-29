@@ -9,7 +9,6 @@ import { usePathname } from 'next/navigation';
 export const Sidebar: FC = () => {
     const pathname: string = usePathname();
 
-    // TODO cambiar las etiquetas a link
     return (
         <div className="d-flex flex-column flex-shrink-0 p-3" style={{ width: '280px' }}>
             <ul className="nav nav-pills flex-column mb-auto">
@@ -20,42 +19,42 @@ export const Sidebar: FC = () => {
                     </Link>
                 </li>
                 <li>
-                    <a href="#" className="nav-link link-body-emphasis d-flex align-items-center gap-1">
+                    <Link href="#" className="nav-link link-body-emphasis d-flex align-items-center gap-1">
                         <IconSearch />
                         Buscar
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#" className="nav-link link-body-emphasis d-flex align-items-center gap-1">
+                    <Link href="#" className="nav-link link-body-emphasis d-flex align-items-center gap-1">
                         <IconCompass />
                         Explorar
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#" className="nav-link link-body-emphasis d-flex align-items-center gap-1">
+                    <Link href="#" className="nav-link link-body-emphasis d-flex align-items-center gap-1">
                         <IconMessages />
                         Mensajes
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#" className="nav-link link-body-emphasis">
+                    <Link href="#" className="nav-link link-body-emphasis">
                         <IconUser />
                         Perfil
-                    </a>
+                    </Link>
                 </li>
             </ul>
             <hr />
             <div className="dropdown">
-                <a href="#" className="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <Link href="#" className="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <Image src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
                     <strong>elpepe32</strong>
-                </a>
+                </Link>
                 <ul className="dropdown-menu text-small shadow">
-                    <li><a className="dropdown-item" href="#">New project...</a></li>
-                    <li><a className="dropdown-item" href="#">Settings</a></li>
-                    <li><a className="dropdown-item" href="#">Profile</a></li>
+                    <li><Link className="dropdown-item" href="#">New project...</Link></li>
+                    <li><Link className="dropdown-item" href="#">Settings</Link></li>
+                    <li><Link className="dropdown-item" href="#">Profile</Link></li>
                     <li><hr className="dropdown-divider" /></li>
-                    <li><a className="dropdown-item" href="#">Sign out</a></li>
+                    <li><Link className="dropdown-item" href="#">Sign out</Link></li>
                 </ul>
             </div>
         </div>
