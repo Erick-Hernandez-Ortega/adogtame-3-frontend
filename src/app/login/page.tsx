@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { LineStyle, BoxStyle } from '@/types/login';
 import { userLogin } from '@/utils/userAPI';
 import Swal from 'sweetalert2';
+import Link from 'next/link';
 
 const caveat = Caveat({ subsets: ["latin"] });
 
@@ -111,7 +112,7 @@ const Login: React.FC = () => {
                     <div className='d-flex justify-content-center '>
                         <div className='d-flex justify-content-center border-top p-3 flex-column align-items-center' style={{ width: 270 }}>
                             <p className='mb-0'>¿No tienes una cuenta?</p>
-                            <a href="" className='text-decoration-none'>Registrate</a>
+                            <Link href="/registro" className='text-decoration-none'>Registrate</Link>
                         </div>
 
                     </div>

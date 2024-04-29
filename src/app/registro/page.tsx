@@ -6,6 +6,7 @@ import { createNewUser } from '@/utils/userAPI';
 import Swal from 'sweetalert2';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const Register: React.FC = () => {
     const router = useRouter();
@@ -152,7 +153,7 @@ const Register: React.FC = () => {
                 <div className='d-flex justify-content-center z-1'>
                     <div className='d-flex justify-content-center border-top p-3 flex-column align-items-center' style={{ width: 270 }}>
                         <p className='mb-0'>¿Ya tienes una cuenta?</p>
-                        <a href="" className='text-decoration-none'>Inicia Sesión</a>
+                        <Link href="/login" className='text-decoration-none'>Inicia Sesión</Link>
                     </div>
                 </div>
 
