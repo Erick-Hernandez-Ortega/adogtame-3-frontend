@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Caveat } from "next/font/google";
-import { IconLogin, IconPlus, IconSearch } from '@tabler/icons-react';
+import { IconLogin, IconPlus } from '@tabler/icons-react';
 import Link from 'next/link';
 
 const caveat = Caveat({ subsets: ["latin"] });
