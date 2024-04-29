@@ -9,7 +9,7 @@ export const Navbar: FC = () => {
 
     return (
         <header className="py-3 border-bottom" style={{ backgroundColor: '#e1dafa' }}>
-            <div className="container-fluid d-grid gap-3 align-items-center" style={{ gridTemplateColumns: '1fr 2fr' }}>
+            <nav className="container-fluid d-grid gap-3 align-items-center" style={{ gridTemplateColumns: '1fr 2fr' }}>
                 <div className={`${caveat.className} display-6`} style={{ color: '#35185d' }}>
                     Adogtame
                 </div>
@@ -28,7 +28,7 @@ export const Navbar: FC = () => {
                         </Link>
                     </div>
                 </div>
-            </div>
+            </nav>
         </header>
 
     );
