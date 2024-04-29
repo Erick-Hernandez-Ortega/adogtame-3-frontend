@@ -1,14 +1,14 @@
-'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 import { Caveat } from "next/font/google";
 import { useRouter } from 'next/navigation';
 import { userLogout } from '@/utils/userAPI';
 import { AxiosError, AxiosResponse } from 'axios';
 import { Navbar } from './components/navbar/navbar';
+import { Sidebar } from './components/sidebar/sidebar';
 
 const caveat = Caveat({ subsets: ["latin"] });
 
-const Home: React.FC = () => {
+const Home: FC = () => {
     // const router = useRouter();
     // const [token, setToken] = useState<string | null>("");
     // let isLogged: boolean = false;
@@ -33,8 +33,10 @@ const Home: React.FC = () => {
 
     return (
         <>
-                <Navbar />
-            <main className='d-flex flex-fill min-vh-100' style={{ maxHeight: '100vh' }}>
+            <Navbar />
+            <main className='d-flex flex-fill' style={{ maxHeight: '100vh' }}>
+                <Sidebar />
+                <p>deded</p>
                 {/* <h1>Home component</h1>
             <button onClick={handleLogout}>Cerrar sesion</button> */}
             </main>
