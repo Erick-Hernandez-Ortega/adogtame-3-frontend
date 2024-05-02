@@ -6,6 +6,7 @@ import { AxiosError, AxiosResponse } from 'axios';
 import { Navbar } from './components/navbar/navbar';
 import { Sidebar } from './components/sidebar/sidebar';
 import { FiltrerMenu } from './components/filtrer-menu/filtrer-menu';
+import { PetCard } from './components/pet-card/pet-card';
 
 const caveat = Caveat({ subsets: ["latin"] });
 
@@ -39,7 +40,7 @@ const Home: FC = () => {
                 <Sidebar />
                 <article className='d-flex flex-column w-100 '>
                     <FiltrerMenu />
-                    <p>deded</p>
+                    <PetCard />
                 </article>
                 {/* <h1>Home component</h1>
             <button onClick={handleLogout}>Cerrar sesion</button> */}
