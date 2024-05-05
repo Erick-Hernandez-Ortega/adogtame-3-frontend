@@ -36,11 +36,25 @@ const Home: FC = () => {
     return (
         <>
             <Navbar />
-            <main className='d-flex flex-fill' style={{ maxHeight: '100vh' }}>
+            <main className='d-flex overflow-hidden' style={{ maxHeight: '90vh' }}>
                 <Sidebar />
-                <article className='d-flex flex-column w-100 px-3'>
+                <article className='d-flex flex-column  bg-warning overflow-scroll px-3'>
                     <FiltrerMenu />
                     <div className='d-flex flex-wrap gap-2'>
+                        <PetCard />
+                        <PetCard />
+                        <PetCard />
+                        <PetCard />
+                        <PetCard />
+                        <PetCard />
+                        <PetCard />
+                        <PetCard />
+                        <PetCard />
+                        <PetCard />
+                        <PetCard />
+                        <PetCard />
+                        <PetCard />
+                        <PetCard />
                         <PetCard />
                         <PetCard />
                         <PetCard />
