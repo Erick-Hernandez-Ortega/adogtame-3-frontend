@@ -38,7 +38,7 @@ const Home: FC = () => {
             <Navbar />
             <main className='d-flex overflow-hidden' style={{ maxHeight: '90vh' }}>
                 <Sidebar />
-                <article className='d-flex flex-column  bg-warning overflow-scroll px-3'>
+                <article className='d-flex flex-column overflow-scroll px-3'>
                     <FiltrerMenu />
                     <div className='d-flex flex-wrap gap-2'>
                         <PetCard />
