@@ -38,9 +38,13 @@ const Home: FC = () => {
             <Navbar />
             <main className='d-flex flex-fill' style={{ maxHeight: '100vh' }}>
                 <Sidebar />
-                <article className='d-flex flex-column w-100 '>
+                <article className='d-flex flex-column w-100 px-3'>
                     <FiltrerMenu />
-                    <PetCard />
+                    <div className='d-flex flex-wrap gap-2'>
+                        <PetCard />
+                        <PetCard />
+                        <PetCard />
+                    </div>
                 </article>
                 {/* <h1>Home component</h1>
             <button onClick={handleLogout}>Cerrar sesion</button> */}
