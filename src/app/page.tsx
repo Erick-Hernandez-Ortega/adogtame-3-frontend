@@ -1,6 +1,5 @@
 'use client'
 import React, { useState, useEffect, FC } from 'react';
-import { Caveat } from "next/font/google";
 import { useRouter } from 'next/navigation';
 import { userLogout } from '@/utils/userAPI';
 import { AxiosError, AxiosResponse } from 'axios';
@@ -8,8 +7,7 @@ import { Navbar } from './components/navbar/navbar';
 import { Sidebar } from './components/sidebar/sidebar';
 import { FiltrerMenu } from './components/filtrer-menu/filtrer-menu';
 import { PetCard } from './components/pet-card/pet-card';
-
-const caveat = Caveat({ subsets: ["latin"] });
+import { Loader } from './components/loader/loader';
 
 const Home: FC = () => {
     const router = useRouter();
@@ -33,7 +31,7 @@ const Home: FC = () => {
 
     return (
 
-        isLoading ? <div>Loading...</div> :
+        isLoading ? <Loader /> :
             <>
                 <Navbar token={token} />
                 <main className='d-flex overflow-hidden' style={{ maxHeight: '90vh' }}>
