@@ -5,12 +5,14 @@ import Link from 'next/link';
 import "./styles.css";
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { User } from '@/types/user';
 
 interface SidebarProps {
-    token: string | null
+    token: string | null;
+    user: User | null;
 }
 
-export const Sidebar: FC<SidebarProps> = ({ token }) => {
+export const Sidebar: FC<SidebarProps> = ({ token, user }) => {
     const pathname: string = usePathname();
 
     return (
@@ -58,7 +60,7 @@ export const Sidebar: FC<SidebarProps> = ({ token }) => {
                     <div className="dropdown">
                         <Link href="#" className="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                             <Image src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
-                            <strong>elpepe32</strong>
+                            <strong>{user?.name}</strong>
                         </Link>
                         <ul className="dropdown-menu text-small shadow">
                             <li><Link className="dropdown-item" href="#">New project...</Link></li>
