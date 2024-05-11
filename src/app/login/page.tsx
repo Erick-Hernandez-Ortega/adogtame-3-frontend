@@ -7,10 +7,10 @@ import { userLogin } from '@/utils/userAPI';
 import Swal from 'sweetalert2';
 import Link from 'next/link';
 import { emailRegex, passwordRegex } from '@/utils/validations';
-
-const caveat = Caveat({ subsets: ["latin"] });
+import { useRouter } from 'next/navigation';
 
 const Login: React.FC = () => {
+    const router = useRouter();
     const lineStyle: LineStyle = {
         margin: '0px 20px',
         width: '150px',
@@ -40,7 +40,8 @@ const Login: React.FC = () => {
                 text: response.message,
             });
         } else {
-            // localStorage.setItem('token', response.token);
+            localStorage.setItem('token', response.token);
+            router.push('/');
         }
     }
 
