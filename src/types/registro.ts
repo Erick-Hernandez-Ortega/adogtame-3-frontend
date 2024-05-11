@@ -14,7 +14,7 @@ export interface FormRegisterState {
     passwordClass: string;
 }
 
-export interface User {
+export interface NewUser {
     name: string;
     email: string;
     age: string;
