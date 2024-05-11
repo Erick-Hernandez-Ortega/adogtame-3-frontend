@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react';
-import { Caveat } from "next/font/google";
 import Image from 'next/image';
 import { LineStyle, BoxStyle } from '@/types/login';
 import { userLogin } from '@/utils/userAPI';
