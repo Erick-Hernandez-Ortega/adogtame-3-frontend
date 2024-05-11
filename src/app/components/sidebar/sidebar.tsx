@@ -6,7 +6,11 @@ import "./styles.css";
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-export const Sidebar: FC = () => {
+interface SidebarProps {
+    token: string | null
+}
+
+export const Sidebar: FC<SidebarProps> = ({ token }) => {
     const pathname: string = usePathname();
 
     return (
@@ -30,33 +34,42 @@ export const Sidebar: FC = () => {
                         Explorar
                     </Link>
                 </li>
-                <li>
-                    <Link href="#" className="nav-link link-body-emphasis d-flex align-items-center gap-1">
-                        <IconMessages />
-                        Mensajes
-                    </Link>
-                </li>
-                <li>
-                    <Link href="#" className="nav-link link-body-emphasis">
-                        <IconUser />
-                        Perfil
-                    </Link>
-                </li>
+                {token !== null && (
+                    <>
+
+                        <li>
+                            <Link href="#" className="nav-link link-body-emphasis d-flex align-items-center gap-1">
+                                <IconMessages />
+                                Mensajes
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="#" className="nav-link link-body-emphasis">
+                                <IconUser />
+                                Perfil
+                            </Link>
+                        </li>
+                    </>
+                )}
             </ul>
-            <hr />
-            <div className="dropdown">
-                <Link href="#" className="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <Image src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
-                    <strong>elpepe32</strong>
-                </Link>
-                <ul className="dropdown-menu text-small shadow">
-                    <li><Link className="dropdown-item" href="#">New project...</Link></li>
-                    <li><Link className="dropdown-item" href="#">Settings</Link></li>
-                    <li><Link className="dropdown-item" href="#">Profile</Link></li>
-                    <li><hr className="dropdown-divider" /></li>
-                    <li><Link className="dropdown-item" href="#">Sign out</Link></li>
-                </ul>
-            </div>
+            {token !== null && (
+                <>
+                    <hr />
+                    <div className="dropdown">
+                        <Link href="#" className="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <Image src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
+                            <strong>elpepe32</strong>
+                        </Link>
+                        <ul className="dropdown-menu text-small shadow">
+                            <li><Link className="dropdown-item" href="#">New project...</Link></li>
+                            <li><Link className="dropdown-item" href="#">Settings</Link></li>
+                            <li><Link className="dropdown-item" href="#">Profile</Link></li>
+                            <li><hr className="dropdown-divider" /></li>
+                            <li><Link className="dropdown-item" href="#">Sign out</Link></li>
+                        </ul>
+                    </div>
+                </>
+            )}
         </aside>
 
     );

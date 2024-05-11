@@ -5,7 +5,11 @@ import Link from 'next/link';
 
 const caveat = Caveat({ subsets: ["latin"] });
 
-export const Navbar: FC = () => {
+interface NavbarProps {
+    token: string | null
+}
+
+export const Navbar: FC<NavbarProps> = ({ token }) => {
 
     return (
         <header className="py-3 border-bottom" style={{ backgroundColor: '#e1dafa' }}>
@@ -20,9 +24,11 @@ export const Navbar: FC = () => {
                     </form>
 
                     <div className="flex-shrink-0 d-flex gap-2">
-                        <button className='btn btn-primary border-0 d-flex align-items-center gap-1 ' type="button" style={{ backgroundColor: '#a87feb' }}>
-                            <IconPlus /> Publicar
-                        </button>
+                        {token !== null && (
+                            <button className='btn btn-primary border-0 d-flex align-items-center gap-1 ' type="button" style={{ backgroundColor: '#a87feb' }}>
+                                <IconPlus /> Publicar
+                            </button>
+                        )}
                         <Link href={"/login"} className='btn btn-primary border-0 d-flex align-items-center gap-1' style={{ backgroundColor: '#474545' }}>
                             <IconLogin /> Iniciar sesión
                         </Link>
