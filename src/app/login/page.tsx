@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { LineStyle, BoxStyle } from '@/types/login';
-import { userLogin } from '@/utils/userAPI';
+import { getUserByEmail, userLogin } from '@/utils/userAPI';
 import Swal from 'sweetalert2';
 import Link from 'next/link';
 import { emailRegex, passwordRegex } from '@/utils/validations';
@@ -40,6 +40,8 @@ const Login: React.FC = () => {
             });
         } else {
             localStorage.setItem('token', response.token);
+            const user = await getUserByEmail(formLogin.email);
+            localStorage.setItem('user', JSON.stringify(user));
             router.push('/');
         }
     }

@@ -1,5 +1,5 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
-import { createNewUserAPIURL, loginAPIURL, logoutAPIURL } from "@/constants/api-urls";
+import { createNewUserAPIURL, loginAPIURL, logoutAPIURL, userAPIURL } from "@/constants/api-urls";
 import { LoginErrorResponse, LoginSuccessResponse, UserLogin } from '@/types/login';
 import { User } from '@/types/registro';
 
@@ -38,3 +38,13 @@ export const userLogout = async (token: String | null): Promise<AxiosResponse | 
             return error;
         });
 };
+
+export const getUserByEmail = async (email: string): Promise<AxiosResponse | AxiosError> => {
+    return await axios.get(`${userAPIURL}${email}`)
+        .then((response: AxiosResponse) => {
+            return response.data.user;
+        })
+        .catch((error: AxiosError) => {
+            return error;
+        })
+}
