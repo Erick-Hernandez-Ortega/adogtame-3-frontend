@@ -1,6 +1,6 @@
 'use client';
 import React, { FC } from 'react';
-import { IconCompass, IconHome, IconMessages, IconSearch, IconUser } from '@tabler/icons-react';
+import { IconCompass, IconHome, IconLogout, IconMessages, IconSearch, IconUser } from '@tabler/icons-react';
 import Link from 'next/link';
 import "./styles.css";
 import Image from 'next/image';
@@ -10,9 +10,10 @@ import { User } from '@/types/user';
 interface SidebarProps {
     token: string | null;
     user: User | null;
+    logout: () => Promise<void>;
 }
 
-export const Sidebar: FC<SidebarProps> = ({ token, user }) => {
+export const Sidebar: FC<SidebarProps> = ({ token, user, logout }) => {
     const pathname: string = usePathname();
 
     return (
@@ -57,18 +58,12 @@ export const Sidebar: FC<SidebarProps> = ({ token, user }) => {
             {token !== null && (
                 <>
                     <hr />
-                    <div className="dropdown">
-                        <Link href="#" className="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div className="d-flex align-items-center justify-content-between ">
+                        <div>
                             <Image src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
                             <strong>{user?.name}</strong>
-                        </Link>
-                        <ul className="dropdown-menu text-small shadow">
-                            <li><Link className="dropdown-item" href="#">New project...</Link></li>
-                            <li><Link className="dropdown-item" href="#">Settings</Link></li>
-                            <li><Link className="dropdown-item" href="#">Profile</Link></li>
-                            <li><hr className="dropdown-divider" /></li>
-                            <li><Link className="dropdown-item" href="#">Sign out</Link></li>
-                        </ul>
+                        </div>
+                        <IconLogout style={{ cursor: 'pointer' }} onClick={logout} />
                     </div>
                 </>
             )}

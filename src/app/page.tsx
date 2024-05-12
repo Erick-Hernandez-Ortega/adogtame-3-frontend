@@ -18,9 +18,10 @@ const Home: FC = () => {
 
     const handleLogout = async (): Promise<void> => {
         const response: AxiosResponse | AxiosError = await userLogout(token);
-        console.log(response);
+
         localStorage.removeItem('token');
-        router.push('/login');
+        localStorage.removeItem('user');
+        window.location.reload();
     }
 
     useEffect(() => {
@@ -39,7 +40,7 @@ const Home: FC = () => {
             <>
                 <Navbar token={token} />
                 <main className='d-flex overflow-hidden' style={{ maxHeight: '90vh' }}>
-                    <Sidebar token={token} user={user} />
+                    <Sidebar token={token} user={user} logout={handleLogout} />
                     <article className='d-flex flex-column overflow-scroll px-3'>
                         <FiltrerMenu />
                         <div className='d-flex flex-wrap gap-2'>
