@@ -29,9 +29,11 @@ export const Navbar: FC<NavbarProps> = ({ token }) => {
                                 <IconPlus /> Publicar
                             </button>
                         )}
-                        <Link href={"/login"} className='btn btn-primary border-0 d-flex align-items-center gap-1' style={{ backgroundColor: '#474545' }}>
-                            <IconLogin /> Iniciar sesión
-                        </Link>
+                        {token === null && (
+                            <Link href={"/login"} className='btn btn-primary border-0 d-flex align-items-center gap-1' style={{ backgroundColor: '#474545' }}>
+                                <IconLogin /> Iniciar sesión
+                            </Link>
+                        )}
                     </div>
                 </div>
             </nav>
