@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./globals.css";
 import Head from 'next/head'
@@ -12,6 +12,12 @@ export const metadata: Metadata = {
   icons: { icon: "img/logos/ADOGTAME_LOGO.png" }
 };
 
+export const viewport: Viewport = {
+  themeColor: 'black',
+  width: 'device-width',
+  initialScale: 1,
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -19,10 +25,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <Head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
       <body>
         <MantineProvider>{children}</MantineProvider>
       </body>
