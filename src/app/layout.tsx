@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./globals.css";
 import Head from 'next/head'
 import '@mantine/core/styles.css';
+import '@mantine/dates/styles.css';
 import { MantineProvider } from '@mantine/core';
 
 export const metadata: Metadata = {
