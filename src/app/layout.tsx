@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./globals.css";
 import Head from 'next/head'
+import '@mantine/core/styles.css';
+import { MantineProvider } from '@mantine/core';
 
 export const metadata: Metadata = {
   title: "Adogtame - Adopción de Mascotas",
@@ -21,7 +23,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <body>
-        {children}
+        <MantineProvider>{children}</MantineProvider>
       </body>
     </html>
   );
