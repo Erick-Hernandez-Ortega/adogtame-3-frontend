@@ -1,8 +1,8 @@
-'use client'
 import React, { FC, useState } from 'react';
 import { Button, Group, Modal, Stepper, Switch, TextInput, Textarea } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { DateInput } from '@mantine/dates';
+import { IconCheck, IconDog, IconPhoto } from '@tabler/icons-react';
 
 interface ModalPetProps {
     opened: boolean;
@@ -28,8 +28,8 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
             }}
             transitionProps={{ transition: 'fade', duration: 300 }}
         >
-            <Stepper active={active} color='#a87feb' onStepClick={setActive}>
-                <Stepper.Step label="Primer paso" description="Información">
+            <Stepper active={active} color='#a87feb' onStepClick={setActive} allowNextStepsSelect={false}>
+                <Stepper.Step label="Primer paso" description="Información" icon={<IconDog />}>
                     <TextInput
                         label="Nombre de la mascota"
                         description="Ingresa el nombre completo de tu mascota."
@@ -71,10 +71,10 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
                         label="¿Esta mascota esta esterilizada?"
                     />
                 </Stepper.Step>
-                <Stepper.Step label="Segundo paso" description="Imagenes">
+                <Stepper.Step label="Segundo paso" description="Imagenes" icon={<IconPhoto />}>
                     Step 2 content: Verify email
                 </Stepper.Step>
-                <Stepper.Step label="Ultimo paso" description="Verificar información">
+                <Stepper.Step label="Ultimo paso" description="Verificar información" icon={<IconCheck />}>
                     Step 3 content: Get full access
                 </Stepper.Step>
                 <Stepper.Completed>
