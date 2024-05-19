@@ -6,14 +6,15 @@ import "./styles.css";
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { User } from '@/types/user';
+import { useStore } from '@/strore/store';
 
 interface SidebarProps {
-    token: string | null;
     user: User | null;
     logout: () => Promise<void>;
 }
 
-export const Sidebar: FC<SidebarProps> = ({ token, user, logout }) => {
+export const Sidebar: FC<SidebarProps> = ({ user, logout }) => {
+    const { token } = useStore()
     const pathname: string = usePathname();
 
     return (
@@ -37,7 +38,7 @@ export const Sidebar: FC<SidebarProps> = ({ token, user, logout }) => {
                         Explorar
                     </Link>
                 </li>
-                {token !== null && (
+                {token !== '' && (
                     <>
 
                         <li>

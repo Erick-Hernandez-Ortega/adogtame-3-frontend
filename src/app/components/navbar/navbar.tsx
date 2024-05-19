@@ -5,14 +5,12 @@ import Link from 'next/link';
 import { useDisclosure } from '@mantine/hooks';
 import { Button } from '@mantine/core';
 import { ModalPet } from '../modal-pet/modal-pet';
+import { useStore } from '@/strore/store';
 
 const caveat = Caveat({ subsets: ["latin"] });
 
-interface NavbarProps {
-    token: string | null
-}
-
-export const Navbar: FC<NavbarProps> = ({ token }) => {
+export const Navbar: FC = () => {
+    const { token } = useStore()
     const [opened, { open, close }] = useDisclosure(false);
 
     return (
@@ -29,13 +27,13 @@ export const Navbar: FC<NavbarProps> = ({ token }) => {
                         </form>
 
                         <div className="flex-shrink-0 d-flex gap-2">
-                            {token !== null && (
+                            {token !== '' && (
                                 <Button onClick={open} className='btn btn-primary border-0 d-flex align-items-center gap-1 ' style={{ backgroundColor: '#a87feb' }}>
                                     <IconPlus />
                                     Publicar
                                 </Button>
                             )}
-                            {token === null && (
+                            {token === '' && (
                                 <Link href={"/login"} className='btn btn-primary border-0 d-flex align-items-center gap-1' style={{ backgroundColor: '#474545' }}>
                                     <IconLogin /> Iniciar sesión
                                 </Link>
