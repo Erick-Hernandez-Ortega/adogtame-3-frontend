@@ -1,8 +1,6 @@
 'use client'
 import React, { useState, FC } from 'react';
 import { useRouter } from 'next/navigation';
-import { userLogout } from '@/utils/userAPI';
-import { AxiosError, AxiosResponse } from 'axios';
 import { Navbar } from './components/navbar/navbar';
 import { Sidebar } from './components/sidebar/sidebar';
 import { FiltrerMenu } from './components/filtrer-menu/filtrer-menu';
@@ -16,14 +14,6 @@ const Home: FC = () => {
 
     const router = useRouter();
     const [user, setUser] = useState<User | null>(null);
-
-    const handleLogout = async (): Promise<void> => {
-        //const response: AxiosResponse | AxiosError = await userLogout(token);
-
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        window.location.reload();
-    }
 
     return (
         isLoading ? <Loader /> :
