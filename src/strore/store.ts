@@ -1,6 +1,5 @@
 import { LoginErrorResponse, LoginSuccessResponse, UserLogin } from '@/types/login';
 import { userLogin, userLogout } from '@/utils/userAPI';
-import { log } from 'console';
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 
