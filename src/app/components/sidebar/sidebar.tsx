@@ -1,19 +1,16 @@
 'use client';
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { IconCompass, IconHome, IconLogout, IconMessages, IconSearch, IconUser } from '@tabler/icons-react';
 import Link from 'next/link';
 import "./styles.css";
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { User } from '@/types/user';
 import { useStore } from '@/store/store';
 
-interface SidebarProps {
-    user: User | null;
-}
+interface SidebarProps {}
 
-export const Sidebar: FC<SidebarProps> = ({ user }) => {
-    const { token, userLogOut } = useStore()
+export const Sidebar: FC<SidebarProps> = () => {
+    const { token, userLogOut, user } = useStore()
     const pathname: string = usePathname();
 
     const logout = async (): Promise<void> => {
