@@ -6,7 +6,6 @@ import { NewUser } from '@/types/registro';
 export const userLogin = async (user: UserLogin): Promise<LoginSuccessResponse | LoginErrorResponse> => {
     return await axios.post(loginAPIURL, user)
         .then((response: AxiosResponse) => {
-            console.log(response);
             return response.data as LoginSuccessResponse;
         })
         .catch((error: AxiosError) => {

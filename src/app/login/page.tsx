@@ -7,9 +7,11 @@ import Swal from 'sweetalert2';
 import Link from 'next/link';
 import { emailRegex, passwordRegex } from '@/utils/validations';
 import { useRouter } from 'next/navigation';
+import { useStore } from '@/strore/store';
 
 const Login: React.FC = () => {
     const router = useRouter();
+    const { userLogin } = useStore()
     const lineStyle: LineStyle = {
         margin: '0px 20px',
         width: '150px',
@@ -30,20 +32,24 @@ const Login: React.FC = () => {
     });
 
     const handleLogin = async (): Promise<void> => {
-        const response: any = await userLogin({ email: formLogin.email, password: formLogin.password });
-
-        if (response.error) {
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: response.message,
-            });
-        } else {
-            localStorage.setItem('token', response.token);
-            const user = await getUserByEmail(formLogin.email);
-            localStorage.setItem('user', JSON.stringify(user));
+        const response = await userLogin({ email: formLogin.email, password: formLogin.password })
+        if (response) {
             router.push('/');
         }
+        /*         const response: any = await userLogin({ email: formLogin.email, password: formLogin.password });
+        
+                if (response.error) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Error",
+                        text: response.message,
+                    });
+                } else {
+                    localStorage.setItem('token', response.token);
+                    const user = await getUserByEmail(formLogin.email);
+                    localStorage.setItem('user', JSON.stringify(user));
+                    router.push('/');
+                } */
     }
 
     const validateEmail = (email: string): void => {

@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect, FC } from 'react';
+import React, { useState, FC } from 'react';
 import { useRouter } from 'next/navigation';
 import { userLogout } from '@/utils/userAPI';
 import { AxiosError, AxiosResponse } from 'axios';
