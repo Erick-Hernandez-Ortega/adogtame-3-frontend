@@ -25,18 +25,7 @@ const Home: FC = () => {
         window.location.reload();
     }
 
-    /*     useEffect(() => {
-            const userToken: string | null = localStorage.getItem('token');
-            const userLocalStorage: string | null = localStorage.getItem('user');
-    
-            // if (!userTkn) return router.push('/login') 
-            setToken(userToken);
-            setUser(JSON.parse(userLocalStorage as string));
-            setIsLoading(false);
-        }, [router]); */
-
     return (
-
         isLoading ? <Loader /> :
             <>
                 <Navbar />

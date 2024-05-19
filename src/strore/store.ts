@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { devtools, persist } from 'zustand/middleware';
 
 type StoreState = {
     isLoading: boolean;
@@ -8,7 +8,7 @@ type StoreState = {
     addToken: (token: string) => void;
 };
 
-export const useStore = create<StoreState>()(
+export const useStore = create<StoreState>()(devtools(
     persist(
         (set) => ({
             isLoading: false,
@@ -25,4 +25,5 @@ export const useStore = create<StoreState>()(
             partialize: (state) => ({ token: state.token }),
         }
     )
+)
 );
