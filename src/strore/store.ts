@@ -21,7 +21,8 @@ export const useStore = create<StoreState>()(
             },
         }),
         {
-            name: 'userInfo', // nombre para el almacenamiento persistente
+            name: 'userInfo',
+            partialize: (state) => ({ token: state.token }),
         }
     )
 );
