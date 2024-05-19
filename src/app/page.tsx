@@ -7,7 +7,7 @@ import { FiltrerMenu } from './components/filtrer-menu/filtrer-menu';
 import { PetCard } from './components/pet-card/pet-card';
 import { Loader } from './components/loader/loader';
 import { User } from '@/types/user';
-import { useStore } from '@/strore/store';
+import { useStore } from '@/store/store';
 
 const Home: FC = () => {
     const { isLoading, changeLoader } = useStore()

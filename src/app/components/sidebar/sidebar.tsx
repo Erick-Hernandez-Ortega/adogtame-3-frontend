@@ -6,7 +6,7 @@ import "./styles.css";
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { User } from '@/types/user';
-import { useStore } from '@/strore/store';
+import { useStore } from '@/store/store';
 
 interface SidebarProps {
     user: User | null;

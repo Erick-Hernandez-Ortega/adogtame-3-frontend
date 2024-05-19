@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useDisclosure } from '@mantine/hooks';
 import { Button } from '@mantine/core';
 import { ModalPet } from '../modal-pet/modal-pet';
-import { useStore } from '@/strore/store';
+import { useStore } from '@/store/store';
 
 const caveat = Caveat({ subsets: ["latin"] });
 
