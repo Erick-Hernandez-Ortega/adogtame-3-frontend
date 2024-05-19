@@ -30,7 +30,7 @@ const Home: FC = () => {
             <>
                 <Navbar />
                 <main className='d-flex overflow-hidden' style={{ maxHeight: '90vh' }}>
-                    <Sidebar user={user} logout={handleLogout} />
+                    <Sidebar user={user} />
                     <article className='d-flex flex-column overflow-scroll px-3'>
                         <FiltrerMenu />
                         <div className='d-flex flex-wrap gap-2'>

@@ -10,12 +10,17 @@ import { useStore } from '@/strore/store';
 
 interface SidebarProps {
     user: User | null;
-    logout: () => Promise<void>;
 }
 
-export const Sidebar: FC<SidebarProps> = ({ user, logout }) => {
-    const { token } = useStore()
+export const Sidebar: FC<SidebarProps> = ({ user }) => {
+    const { token, userLogOut } = useStore()
     const pathname: string = usePathname();
+
+    const logout = () => {
+        const reponse = userLogOut(token);
+        console.log('Sesión cerrada correctamente');
+
+    }
 
     return (
         <aside className="d-flex flex-column flex-shrink-0 p-3" style={{ width: '280px' }}>
