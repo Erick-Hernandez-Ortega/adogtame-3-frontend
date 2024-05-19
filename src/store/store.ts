@@ -1,5 +1,6 @@
 import { LoginErrorResponse, LoginSuccessResponse, UserLogin } from '@/types/login';
-import { userLogin, userLogout } from '@/utils/userAPI';
+import { User } from '@/types/user';
+import { getUserByEmail, userLogin, userLogout } from '@/utils/userAPI';
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 
@@ -9,7 +10,8 @@ type StoreState = {
     loginError: string;
     changeLoader: (value: boolean) => void;
     userLogin: (user: UserLogin) => Promise<boolean>;
-    userLogOut: (token: string) => Promise<boolean>
+    userLogOut: (token: string) => Promise<boolean>;
+    user: User | null;
 };
 
 export const useStore = create<StoreState>()(
@@ -19,6 +21,7 @@ export const useStore = create<StoreState>()(
                 isLoading: false,
                 token: '',
                 loginError: '',
+                user: null,
                 changeLoader: (value) => {
                     set({ isLoading: value });
                 },
@@ -27,6 +30,11 @@ export const useStore = create<StoreState>()(
                     //console.log(loginResponse);
                     if ((loginResponse as LoginSuccessResponse).status === 'success') {
                         set({ token: (loginResponse as LoginSuccessResponse).token })
+
+                        // ? Si es correcto el login se guarda user
+                        const userLogin: any = await getUserByEmail(user.email);
+                        set({ user: userLogin });
+
                         return true
                     } else {
                         //console.log((loginResponse as LoginErrorResponse).error);
