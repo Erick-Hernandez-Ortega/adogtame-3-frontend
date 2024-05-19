@@ -1,5 +1,5 @@
 'use client';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { IconCompass, IconHome, IconLogout, IconMessages, IconSearch, IconUser } from '@tabler/icons-react';
 import Link from 'next/link';
 import "./styles.css";
@@ -16,10 +16,8 @@ export const Sidebar: FC<SidebarProps> = ({ user }) => {
     const { token, userLogOut } = useStore()
     const pathname: string = usePathname();
 
-    const logout = () => {
-        const reponse = userLogOut(token);
-        console.log('Sesión cerrada correctamente');
-
+    const logout = async (): Promise<void> => {
+        const response = await userLogOut(token);
     }
 
     return (
@@ -61,7 +59,7 @@ export const Sidebar: FC<SidebarProps> = ({ user }) => {
                     </>
                 )}
             </ul>
-            {token !== null && (
+            {token !== null && token !== '' && (
                 <>
                     <hr />
                     <div className="d-flex align-items-center justify-content-between ">
