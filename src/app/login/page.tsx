@@ -2,12 +2,11 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { LineStyle, BoxStyle } from '@/types/login';
-import { getUserByEmail, userLogin } from '@/utils/userAPI';
 import Swal from 'sweetalert2';
 import Link from 'next/link';
 import { emailRegex, passwordRegex } from '@/utils/validations';
 import { useRouter } from 'next/navigation';
-import { useStore } from '@/strore/store';
+import { useStore } from '@/store/store';
 
 const Login: React.FC = () => {
     const router = useRouter();
@@ -32,24 +31,17 @@ const Login: React.FC = () => {
     });
 
     const handleLogin = async (): Promise<void> => {
-        const response = await userLogin({ email: formLogin.email, password: formLogin.password })
-        if (response) {
-            router.push('/');
-        }
-        /*         const response: any = await userLogin({ email: formLogin.email, password: formLogin.password });
-        
-                if (response.error) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Error",
-                        text: response.message,
-                    });
-                } else {
-                    localStorage.setItem('token', response.token);
-                    const user = await getUserByEmail(formLogin.email);
-                    localStorage.setItem('user', JSON.stringify(user));
-                    router.push('/');
-                } */
+        const response: boolean = await userLogin({ email: formLogin.email, password: formLogin.password })
+
+        if (response) router.push('/');
+
+        if (!response) {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Credenciales incorrectas",
+            });
+        } 
     }
 
     const validateEmail = (email: string): void => {
