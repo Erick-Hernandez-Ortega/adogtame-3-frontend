@@ -1,8 +1,9 @@
 import React, { FC, useState } from 'react';
-import { Button, Group, Modal, Stepper, Switch, TextInput, Textarea } from '@mantine/core';
+import { Button, CloseButton, FileButton, Group, Modal, Stepper, Switch, Text, TextInput, Textarea } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { DateInput } from '@mantine/dates';
 import { IconCheck, IconDog, IconPhoto } from '@tabler/icons-react';
+import Image from 'next/image';
 
 interface ModalPetProps {
     opened: boolean;
@@ -14,6 +15,18 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
     const [active, setActive] = useState(0);
     const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
     const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
+    const [files, setFiles] = useState<File[]>([]);
+
+    const handleFileChange = (files: File[]): void => {
+        if (files.length > 5) return;
+
+        setFiles(files);
+    }
+
+    const removeImage = (index: number): void => {
+        files.splice(index, 1);
+        setFiles([...files]);
+    }
 
     return (
         <Modal
@@ -72,7 +85,24 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
                     />
                 </Stepper.Step>
                 <Stepper.Step label="Segundo paso" description="Imagenes" icon={<IconPhoto />}>
-                    Step 2 content: Verify email
+                    <Group justify="space-between`">
+                        <Text size="md">Sube imagenes de la mascota. (5 imagenes max.)</Text>
+                        <FileButton onChange={handleFileChange} accept="image/png,image/jpeg" multiple>
+                            {(props) => <Button {...props}>Subir imagenes</Button>}
+                        </FileButton>
+                    </Group>
+                    {files.length > 0 && (
+                        <Text size="md" fw={700}>Imagenes seleccionadas:</Text>
+                    )}
+
+                    <div className='d-flex flex-wrap gap-2 mt-3 '>
+                        {files.map((file: File, index: number) => (
+                            <figure key={index}>
+                                <CloseButton className='position-absolute' size="lg" onClick={() => removeImage(index)} variant="transparent"  />
+                                <Image src={URL.createObjectURL(file)} alt={file.name} width={200} height={200} className="rounded shadow object-fit-cover" />
+                            </figure>
+                        ))}
+                    </div>
                 </Stepper.Step>
                 <Stepper.Step label="Ultimo paso" description="Verificar información" icon={<IconCheck />}>
                     Step 3 content: Get full access
@@ -84,7 +114,7 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
 
             <Group justify="center" mt="xl">
                 <Button variant='default' onClick={prevStep}>Atras</Button>
-                <Button onClick={nextStep}  style={{ backgroundColor: '#a87feb' }}>Siguiente</Button>
+                <Button onClick={nextStep} style={{ backgroundColor: '#a87feb' }}>Siguiente</Button>
             </Group>
         </Modal>
 
