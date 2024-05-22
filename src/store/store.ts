@@ -18,7 +18,7 @@ export const useStore = create<StoreState>()(
     devtools(
         persist(
             (set) => ({
-                isLoading: false,
+                isLoading: true,
                 token: '',
                 loginError: '',
                 user: null,
@@ -55,7 +55,7 @@ export const useStore = create<StoreState>()(
             }),
             {
                 name: 'userInfo',
-                partialize: (state) => ({ token: state.token }),
+                partialize: (state) => ({ token: state.token, user: state.user }),
             }
         )
     )

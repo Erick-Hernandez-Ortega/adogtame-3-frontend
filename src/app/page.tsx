@@ -1,5 +1,5 @@
 'use client'
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Navbar } from './components/navbar/navbar';
 import { Sidebar } from './components/sidebar/sidebar';
 import { FiltrerMenu } from './components/filtrer-menu/filtrer-menu';
@@ -8,7 +8,11 @@ import { Loader } from './components/loader/loader';
 import { useStore } from '@/store/store';
 
 const Home: FC = () => {
-    const { isLoading, changeLoader } = useStore()
+    const { isLoading, changeLoader, user } = useStore()
+
+    useEffect(() => {
+        if (user) changeLoader(false);
+    }, [user, changeLoader])
 
     return (
         isLoading ? <Loader /> :
