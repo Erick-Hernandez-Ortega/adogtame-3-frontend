@@ -38,6 +38,12 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
         setFiles([...files]);
     }
 
+    const setBreed = (value: string): void => {
+        const alphabeticRegex: RegExp = /^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/;
+        if (alphabeticRegex.test(value)) 
+            setPet({ ...pet, breed: value });
+    }
+
     return (
         <Modal
             opened={opened}
@@ -66,7 +72,7 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
                     <TextInput
                         label="Raza de la mascota"
                         value={pet.breed}
-                        onChange={(e) => setPet({ ...pet, breed: e.target.value })}
+                        onChange={(e) => setBreed(e.target.value)}
                         description="Ingresa la raza de tu mascota, si la desconoce poner 'Desconocido'."
                         withAsterisk
                         placeholder="Raza"
