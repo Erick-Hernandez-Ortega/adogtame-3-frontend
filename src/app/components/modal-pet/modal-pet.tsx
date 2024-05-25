@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react';
-import { Button, CloseButton, FileButton, Group, Modal, Stepper, Switch, Text, TextInput, Textarea } from '@mantine/core';
+import { Button, CloseButton, FileButton, Group, Modal, Select, Stepper, Switch, Text, TextInput, Textarea } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import { DateInput } from '@mantine/dates';
 import { IconCheck, IconDog, IconPhoto } from '@tabler/icons-react';
 import Image from 'next/image';
 
@@ -16,6 +15,17 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
     const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
     const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
     const [files, setFiles] = useState<File[]>([]);
+    const [pet, setPet] = useState({
+        name: '',
+        breed: '',
+        description: '',
+        sex: 'Macho',
+        typeOfPet: 'Perro',
+        size: 'Pequeño',
+        age: '',
+        stirilized: false,
+        images: []
+    })
 
     const handleFileChange = (files: File[]): void => {
         if (files.length > 5) return;
@@ -45,6 +55,8 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
                 <Stepper.Step label="Primer paso" description="Información" icon={<IconDog />}>
                     <TextInput
                         label="Nombre de la mascota"
+                        value={pet.name}
+                        onChange={(e) => setPet({ ...pet, name: e.target.value })}
                         description="Ingresa el nombre completo de tu mascota."
                         withAsterisk
                         placeholder="Nombre completo"
@@ -53,34 +65,68 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
                     />
                     <TextInput
                         label="Raza de la mascota"
+                        value={pet.breed}
+                        onChange={(e) => setPet({ ...pet, breed: e.target.value })}
                         description="Ingresa la raza de tu mascota, si la desconoce poner 'Desconocido'."
                         withAsterisk
                         placeholder="Raza"
                         className='mb-3'
                         variant='filled'
                     />
-                    <DateInput
-                        // value={value}
-                        // onChange={setValue}
-                        variant="filled"
-                        className='mb-3'
-                        locale='es-mx'
+                    <TextInput
+                        label="Edad de la mascota"
+                        value={pet.age}
+                        onChange={(e) => setPet({ ...pet, age: e.target.value })}
+                        description="Ingresa la raza de tu mascota, si la desconoce poner 'Desconocido'."
                         withAsterisk
-                        valueFormat="DD MMM YYYY"
-                        description="Ingresa fecha de nacimiento de tu mascota, si la desconoce poner la fecha cuando la encontro."
-                        label="Fecha de nacimiento"
-                        placeholder="Fecha de nacimiento"
+                        placeholder="Edad"
+                        className='mb-3'
+                        variant='filled'
                     />
                     <Textarea
                         variant="filled"
+                        value={pet.description}
+                        onChange={(e) => setPet({ ...pet, description: e.target.value })}
                         label="Descripción de la mascota"
                         className='mb-3'
                         withAsterisk
                         description="Proporcione detalles importantes sobre la mascota."
                         placeholder="Es un cachorro..."
                     />
+                    <Select 
+                        label="Tipo de mascota" 
+                        value={pet.typeOfPet}
+                        onChange={(e) => setPet({ ...pet, typeOfPet: e! })}
+                        description="Ingresa el tipo de mascota."
+                        withAsterisk
+                        placeholder='Tipo'
+                        variant='filled'
+                        className='mb-3' 
+                        data={['Perro', 'Gato', 'Otro']} />
+                    <Select 
+                        label="Tamaño de la mascota" 
+                        description="Ingresa el tamaño de mascota."
+                        value={pet.size}
+                        onChange={(e) => setPet({ ...pet, size: e! })}
+                        placeholder='Tamaño'
+                        withAsterisk
+                        variant='filled'
+                        className='mb-3' 
+                        data={['Pequeño', 'Mediano', 'Grande', 'Extragrande']} />
+                    <Select 
+                        label="Sexo de la mascota" 
+                        description="Ingresa el sexo de mascota."
+                        value={pet.sex}
+                        onChange={(e) => setPet({ ...pet, sex: e! })}
+                        placeholder='Sexo'
+                        withAsterisk
+                        variant='filled'
+                        className='mb-3' 
+                        data={['Macho', 'Hembra', 'Desconocido']} />
                     <Switch
                         className='mb-3'
+                        checked={pet.stirilized}
+                        onChange={(event) => setPet({ ...pet, stirilized: event.currentTarget.checked })}
                         label="¿Esta mascota esta esterilizada?"
                     />
                 </Stepper.Step>
@@ -98,14 +144,28 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
                     <div className='d-flex flex-wrap gap-2 mt-3 '>
                         {files.map((file: File, index: number) => (
                             <figure key={index}>
-                                <CloseButton className='position-absolute' size="lg" onClick={() => removeImage(index)} variant="transparent"  />
+                                <CloseButton className='position-absolute' size="lg" onClick={() => removeImage(index)} variant="transparent" />
                                 <Image src={URL.createObjectURL(file)} alt={file.name} width={200} height={200} className="rounded shadow object-fit-cover" />
                             </figure>
                         ))}
                     </div>
                 </Stepper.Step>
                 <Stepper.Step label="Ultimo paso" description="Verificar información" icon={<IconCheck />}>
-                    Step 3 content: Get full access
+                    <Text size="lg" className='text-center' >Antes de enviar confirma la información.</Text>
+                    {files.map((file: File, index: number) => (
+                            <figure key={index}>
+                                <CloseButton className='position-absolute' size="lg" onClick={() => removeImage(index)} variant="transparent" />
+                                <Image src={URL.createObjectURL(file)} alt={file.name} width={200} height={200} className="rounded shadow object-fit-cover" />
+                            </figure>
+                        ))}
+                     <Text fw={700}>Nombre: <span className='fw-normal'>{pet.name}</span></Text>
+                     <Text fw={700}>Raza: <span className='fw-normal'>{pet.breed}</span></Text>
+                     <Text fw={700}>Edad: <span className='fw-normal'>{pet.age}</span></Text>
+                     <Text fw={700}>Descripcion: <span className='fw-normal'>{pet.description}</span></Text>
+                     <Text fw={700}>Tipo de mascota: <span className='fw-normal'>{pet.typeOfPet}</span></Text>
+                     <Text fw={700}>Tamaño: <span className='fw-normal'>{pet.size}</span></Text>
+                     <Text fw={700}>Sexo: <span className='fw-normal'>{pet.sex}</span></Text>
+                     <Text fw={700}>Esta esterilizado: <span className='fw-normal'>{pet.stirilized ? 'Si' : 'No'}</span></Text>
                 </Stepper.Step>
                 <Stepper.Completed>
                     Completed, click back button to get to previous step
