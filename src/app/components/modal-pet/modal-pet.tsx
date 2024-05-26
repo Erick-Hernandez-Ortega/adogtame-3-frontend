@@ -44,6 +44,22 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
             setPet({ ...pet, breed: value });
     }
 
+    const validateForm = (): boolean => {
+        switch (active) {
+            case 0:
+                if (pet.name.length > 0 && pet.breed.length > 0 && pet.description.length > 0 && pet.age.length > 0) return true
+                break;
+            case 1:
+                if (files.length > 0) return true
+                break;
+            case 2:
+                return true; 
+            default:
+                return false;
+        }
+        return false;
+    }
+
     return (
         <Modal
             opened={opened}
@@ -180,7 +196,7 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
 
             <Group justify="center" mt="xl">
                 <Button variant='default' onClick={prevStep}>Atras</Button>
-                <Button onClick={nextStep} style={{ backgroundColor: '#a87feb' }}>Siguiente</Button>
+                <Button onClick={nextStep} disabled={!validateForm()} style={{ backgroundColor: '#a87feb' }}>Siguiente</Button>
             </Group>
         </Modal>
 
