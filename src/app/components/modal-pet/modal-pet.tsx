@@ -3,6 +3,8 @@ import { Button, CloseButton, FileButton, Group, Modal, Select, Stepper, Switch,
 import { useMediaQuery } from '@mantine/hooks';
 import { IconCheck, IconDog, IconPhoto } from '@tabler/icons-react';
 import Image from 'next/image';
+import { useStore } from '@/store/store';
+import { Pet, PetForm } from '@/types/pets';
 
 interface ModalPetProps {
     opened: boolean;
@@ -10,10 +12,11 @@ interface ModalPetProps {
 }
 
 export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
+    const { petPublication } = useStore();
     const isMobile: boolean | undefined = useMediaQuery('(max-width: 50em)');
     const [active, setActive] = useState(0);
     const [files, setFiles] = useState<File[]>([]);
-    const [pet, setPet] = useState({
+    const [pet, setPet] = useState<Pet>({
         name: '',
         breed: '',
         description: '',
@@ -22,8 +25,7 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
         size: 'Pequeño',
         age: '',
         stirilized: false,
-        images: []
-    })
+    });
 
     const nextStep = (): void => {
         setActive((current) => (current < 3 ? current + 1 : current));
@@ -67,7 +69,12 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
     }
 
     const handleSubmit = (): void => {
+        const petForm: PetForm = {
+            ...pet,
+            images: files
+        }
 
+        petPublication(petForm);
     }
 
     return (
