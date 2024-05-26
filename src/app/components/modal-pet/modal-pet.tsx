@@ -4,7 +4,7 @@ import { useMediaQuery } from '@mantine/hooks';
 import { IconCheck, IconDog, IconPhoto } from '@tabler/icons-react';
 import Image from 'next/image';
 import { useStore } from '@/store/store';
-import { Pet, PetForm } from '@/types/pets';
+import { Pet } from '@/types/pets';
 
 interface ModalPetProps {
     opened: boolean;
@@ -69,12 +69,18 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
     }
 
     const handleSubmit = (): void => {
-        const petForm: PetForm = {
-            ...pet,
-            images: files
-        }
+        // const petForm: PetForm = {
+        //     ...pet,
+        //     images: files
+        // }
+        const formData: FormData = new FormData();
+        formData.append('pet', JSON.stringify(pet));
 
-        petPublication(petForm);
+        files.forEach((file: File, index: number) => {
+            formData.append(`images`, file);
+        });
+        // petPublication(petForm);
+        petPublication(formData);
     }
 
     return (
