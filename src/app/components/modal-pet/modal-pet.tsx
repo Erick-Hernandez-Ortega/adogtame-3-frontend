@@ -12,8 +12,6 @@ interface ModalPetProps {
 export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
     const isMobile: boolean | undefined = useMediaQuery('(max-width: 50em)');
     const [active, setActive] = useState(0);
-    const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
-    const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
     const [files, setFiles] = useState<File[]>([]);
     const [pet, setPet] = useState({
         name: '',
@@ -26,6 +24,14 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
         stirilized: false,
         images: []
     })
+
+    const nextStep = (): void => {
+        setActive((current) => (current < 3 ? current + 1 : current));
+
+        if (active === 2) handleSubmit();
+    }
+
+    const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
 
     const handleFileChange = (files: File[]): void => {
         if (files.length > 5) return;
@@ -40,7 +46,7 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
 
     const setBreed = (value: string): void => {
         const alphabeticRegex: RegExp = /^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/;
-        if (alphabeticRegex.test(value)) 
+        if (alphabeticRegex.test(value))
             setPet({ ...pet, breed: value });
     }
 
@@ -53,11 +59,15 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
                 if (files.length > 0) return true
                 break;
             case 2:
-                return true; 
+                return true;
             default:
                 return false;
         }
         return false;
+    }
+
+    const handleSubmit = (): void => {
+
     }
 
     return (
@@ -115,35 +125,35 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
                         description="Proporcione detalles importantes sobre la mascota."
                         placeholder="Es un cachorro..."
                     />
-                    <Select 
-                        label="Tipo de mascota" 
+                    <Select
+                        label="Tipo de mascota"
                         value={pet.typeOfPet}
                         onChange={(e) => setPet({ ...pet, typeOfPet: e! })}
                         description="Ingresa el tipo de mascota."
                         withAsterisk
                         placeholder='Tipo'
                         variant='filled'
-                        className='mb-3' 
+                        className='mb-3'
                         data={['Perro', 'Gato', 'Otro']} />
-                    <Select 
-                        label="Tamaño de la mascota" 
+                    <Select
+                        label="Tamaño de la mascota"
                         description="Ingresa el tamaño de mascota."
                         value={pet.size}
                         onChange={(e) => setPet({ ...pet, size: e! })}
                         placeholder='Tamaño'
                         withAsterisk
                         variant='filled'
-                        className='mb-3' 
+                        className='mb-3'
                         data={['Pequeño', 'Mediano', 'Grande', 'Extragrande']} />
-                    <Select 
-                        label="Sexo de la mascota" 
+                    <Select
+                        label="Sexo de la mascota"
                         description="Ingresa el sexo de mascota."
                         value={pet.sex}
                         onChange={(e) => setPet({ ...pet, sex: e! })}
                         placeholder='Sexo'
                         withAsterisk
                         variant='filled'
-                        className='mb-3' 
+                        className='mb-3'
                         data={['Macho', 'Hembra', 'Desconocido']} />
                     <Switch
                         className='mb-3'
@@ -173,30 +183,42 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
                     </div>
                 </Stepper.Step>
                 <Stepper.Step label="Ultimo paso" description="Verificar información" icon={<IconCheck />}>
-                    <Text size="lg" className='text-center' >Antes de enviar confirma la información.</Text>
-                    {files.map((file: File, index: number) => (
-                            <figure key={index}>
-                                <CloseButton className='position-absolute' size="lg" onClick={() => removeImage(index)} variant="transparent" />
-                                <Image src={URL.createObjectURL(file)} alt={file.name} width={200} height={200} className="rounded shadow object-fit-cover" />
-                            </figure>
-                        ))}
-                     <Text fw={700}>Nombre: <span className='fw-normal'>{pet.name}</span></Text>
-                     <Text fw={700}>Raza: <span className='fw-normal'>{pet.breed}</span></Text>
-                     <Text fw={700}>Edad: <span className='fw-normal'>{pet.age}</span></Text>
-                     <Text fw={700}>Descripcion: <span className='fw-normal'>{pet.description}</span></Text>
-                     <Text fw={700}>Tipo de mascota: <span className='fw-normal'>{pet.typeOfPet}</span></Text>
-                     <Text fw={700}>Tamaño: <span className='fw-normal'>{pet.size}</span></Text>
-                     <Text fw={700}>Sexo: <span className='fw-normal'>{pet.sex}</span></Text>
-                     <Text fw={700}>Esta esterilizado: <span className='fw-normal'>{pet.stirilized ? 'Si' : 'No'}</span></Text>
+                    <Text size="lg" className='text-center mb-2' >Antes de enviar confirma la información.</Text>
+                    <section className='d-flex flex-column align-items-center'>
+                        <div className='d-flex flex-wrap gap-2 mt-3 '>
+                            {files.map((file: File, index: number) => (
+                                <figure key={index}>
+                                    <CloseButton className='position-absolute' size="lg" onClick={() => removeImage(index)} variant="transparent" />
+                                    <Image src={URL.createObjectURL(file)} alt={file.name} width={200} height={200} className="rounded shadow object-fit-cover" />
+                                </figure>
+                            ))}
+                        </div>
+                        <Text fw={700}>Nombre: <span className='fw-normal'>{pet.name}</span></Text>
+                        <Text fw={700}>Raza: <span className='fw-normal'>{pet.breed}</span></Text>
+                        <Text fw={700}>Edad: <span className='fw-normal'>{pet.age}</span></Text>
+                        <Text fw={700}>Descripcion: <span className='fw-normal'>{pet.description}</span></Text>
+                        <Text fw={700}>Tipo de mascota: <span className='fw-normal'>{pet.typeOfPet}</span></Text>
+                        <Text fw={700}>Tamaño: <span className='fw-normal'>{pet.size}</span></Text>
+                        <Text fw={700}>Sexo: <span className='fw-normal'>{pet.sex}</span></Text>
+                        <Text fw={700}>Esta esterilizado: <span className='fw-normal'>{pet.stirilized ? 'Si' : 'No'}</span></Text>
+                    </section>
                 </Stepper.Step>
                 <Stepper.Completed>
-                    Completed, click back button to get to previous step
+                    <div className="d-flex justify-content-center">
+                        <IconCheck className='text-success' size={50} />
+                    </div>
+                    <Text size="lg" className='text-center' fw={700}>¡Listo!</Text>
+                    <Text size="md" className='text-center' >¡Gracias por dar este gran paso para mejorar su vida! Tu dedicación y amor están ayudando a crear un mundo mejor para nuestras queridas mascotas.</Text>
                 </Stepper.Completed>
             </Stepper>
 
             <Group justify="center" mt="xl">
-                <Button variant='default' onClick={prevStep}>Atras</Button>
-                <Button onClick={nextStep} disabled={!validateForm()} style={{ backgroundColor: '#a87feb' }}>Siguiente</Button>
+                {active !== 3 &&
+                    <>
+                        <Button variant='default' onClick={prevStep}>Atras</Button>
+                        <Button onClick={nextStep} disabled={!validateForm()} style={{ backgroundColor: '#a87feb' }}>Siguiente</Button>
+                    </>
+                }
             </Group>
         </Modal>
 
