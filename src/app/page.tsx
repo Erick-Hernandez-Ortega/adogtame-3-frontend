@@ -12,6 +12,7 @@ const Home: FC = () => {
 
     useEffect(() => {
         if (user) changeLoader(false);
+        else setTimeout(() => changeLoader(false), 1000)
     }, [user, changeLoader])
 
     return (
