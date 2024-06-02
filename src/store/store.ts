@@ -12,7 +12,7 @@ type StoreState = {
     changeLoader: (value: boolean) => void;
     userLogin: (user: UserLogin) => Promise<boolean>;
     userLogOut: (token: string) => Promise<boolean>;
-    petPublication: (pet: FormData) => void;
+    petPublication: (pet: FormData, token: string) => void;
     user: User | null;
 };
 
@@ -54,9 +54,9 @@ export const useStore = create<StoreState>()(
                         return false
                     }
                 },
-                petPublication: (pet: FormData) => { 
+                petPublication: (pet: FormData, token: string) => { 
                     // console.log(pet);
-                    const petPublication = createPetPublication(pet);
+                    const petPublication = createPetPublication(pet, token);
                 },
             }),
             {

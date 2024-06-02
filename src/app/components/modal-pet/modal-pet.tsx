@@ -12,7 +12,7 @@ interface ModalPetProps {
 }
 
 export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
-    const { petPublication } = useStore();
+    const { petPublication, token } = useStore();
     const isMobile: boolean | undefined = useMediaQuery('(max-width: 50em)');
     const [active, setActive] = useState(0);
     const [files, setFiles] = useState<File[]>([]);
@@ -69,18 +69,14 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
     }
 
     const handleSubmit = (): void => {
-        // const petForm: PetForm = {
-        //     ...pet,
-        //     images: files
-        // }
         const formData: FormData = new FormData();
         formData.append('pet', JSON.stringify(pet));
 
         files.forEach((file: File, index: number) => {
             formData.append(`images`, file);
         });
-        // petPublication(petForm);
-        petPublication(formData);
+
+        petPublication(formData, token);
     }
 
     return (
