@@ -99,7 +99,7 @@ const Register: React.FC = () => {
     }
 
     return (
-        <main className='d-flex justify-content-center align-items-center min-vh-100 p-3'>
+        <main className='d-flex justify-content-center align-items-center min-vh-100 p-3' style={{ backgroundColor: '#b3a5d4' }}>
             <div className="card d-flex p-3 justify-content-center overflow-hidden" style={boxStyle}>
                 <h1 className='text-center'>¡ BIENVENIDO A ADOGTAME !</h1>
                 <h4 className='text-center'>Tu mejor amigo te espera</h4>

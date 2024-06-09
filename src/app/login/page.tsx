@@ -69,7 +69,7 @@ const Login: React.FC = () => {
     }
 
     return (
-        <main className='d-flex justify-content-center align-items-center  min-vh-100 p-2'>
+        <main className='d-flex justify-content-center align-items-center  min-vh-100 p-2' style={{ backgroundColor: '#b3a5d4' }}>
             <div className="card h-75 d-flex flex-row" style={boxStyle}>
                 <Image src="/img/login/background.jpeg" priority className='d-none d-lg-block' alt="Adogtame Logo" width={529} height={714} />
                 <section className='w-100 p-4'>
