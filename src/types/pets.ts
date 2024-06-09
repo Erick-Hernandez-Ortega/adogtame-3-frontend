@@ -12,3 +12,9 @@ export interface Pet {
 export interface PetForm extends Pet {
     images: File[]
 }
+
+export interface PetResponse extends Pet {
+    _id: string,
+    date: string,
+    images: string[]
+}

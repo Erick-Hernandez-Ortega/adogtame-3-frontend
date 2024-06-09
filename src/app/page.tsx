@@ -11,16 +11,12 @@ const Home: FC = () => {
     const { isLoading, changeLoader, user, getAllPublications } = useStore()
     const [pets, setPets] = useState([]);
 
-    useEffect(() => {
-        if (user) changeLoader(false);
-        else setTimeout(() => changeLoader(false), 1000)
-    }, [user, changeLoader])
-
     const getAllPets = useCallback(async (): Promise<void> => {
         const pets = await getAllPublications();
         console.log(pets);
         setPets(pets);
-    }, [getAllPublications]);
+        changeLoader(false);
+    }, [getAllPublications, changeLoader]);
 
     useEffect(() => {
         getAllPets();
@@ -35,23 +31,11 @@ const Home: FC = () => {
                     <article className='d-flex flex-column overflow-scroll px-3'>
                         <FiltrerMenu />
                         <div className='d-flex flex-wrap gap-2'>
-                            <PetCard />
-                            <PetCard />
-                            <PetCard />
-                            <PetCard />
-                            <PetCard />
-                            <PetCard />
-                            <PetCard />
-                            <PetCard />
-                            <PetCard />
-                            <PetCard />
-                            <PetCard />
-                            <PetCard />
-                            <PetCard />
-                            <PetCard />
-                            <PetCard />
-                            <PetCard />
-                            <PetCard />
+                            {pets.length > 0 ?
+                                pets.map((pet, index) => <PetCard key={index} pet={pet} />) 
+                                :
+                                <p>No hay publicaciones</p>
+                            }
                         </div>
                     </article>
                 </main>
