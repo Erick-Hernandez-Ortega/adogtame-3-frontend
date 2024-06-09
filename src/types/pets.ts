@@ -16,5 +16,5 @@ export interface PetForm extends Pet {
 export interface PetResponse extends Pet {
     _id: string,
     date: string,
-    images: string[]
+    dataUrl: string
 }

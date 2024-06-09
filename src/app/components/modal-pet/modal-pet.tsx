@@ -15,7 +15,7 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
     const { petPublication, token } = useStore();
     const isMobile: boolean | undefined = useMediaQuery('(max-width: 50em)');
     const [active, setActive] = useState(0);
-    const [files, setFiles] = useState<File[]>([]);
+    const [file, setFile] = useState<File | null>(null);
     const [pet, setPet] = useState<Pet>({
         name: '',
         breed: '',
@@ -36,14 +36,11 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
     const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
 
     const handleFileChange = (files: File[]): void => {
-        if (files.length > 5) return;
-
-        setFiles(files);
+        if (files.length === 1) setFile(files[0]);
     }
 
-    const removeImage = (index: number): void => {
-        files.splice(index, 1);
-        setFiles([...files]);
+    const removeImage = (): void => {
+        setFile(null);
     }
 
     const setBreed = (value: string): void => {
@@ -58,7 +55,7 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
                 if (pet.name.length > 0 && pet.breed.length > 0 && pet.description.length > 0 && pet.age.length > 0) return true
                 break;
             case 1:
-                if (files.length > 0) return true
+                if (file) return true
                 break;
             case 2:
                 return true;
@@ -72,9 +69,7 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
         const formData: FormData = new FormData();
         formData.append('pet', JSON.stringify(pet));
 
-        files.forEach((file: File, index: number) => {
-            formData.append(`images`, file);
-        });
+        if (file) formData.append('image', file);
 
         petPublication(formData, token);
     }
@@ -173,34 +168,34 @@ export const ModalPet: FC<ModalPetProps> = ({ opened, close }) => {
                 </Stepper.Step>
                 <Stepper.Step label="Segundo paso" description="Imagenes" icon={<IconPhoto />}>
                     <Group justify="space-between`">
-                        <Text size="md">Sube imagenes de la mascota. (5 imagenes max.)</Text>
+                        <Text size="md">Sube una imagen de la mascota.</Text>
                         <FileButton onChange={handleFileChange} accept="image/png,image/jpeg" multiple>
-                            {(props) => <Button {...props}>Subir imagenes</Button>}
+                            {(props) => <Button {...props}>Subir imagen</Button>}
                         </FileButton>
                     </Group>
-                    {files.length > 0 && (
-                        <Text size="md" fw={700}>Imagenes seleccionadas:</Text>
+                    {file && (
+                        <Text size="md" fw={700}>Imagen seleccionada:</Text>
                     )}
 
                     <div className='d-flex flex-wrap gap-2 mt-3 '>
-                        {files.map((file: File, index: number) => (
-                            <figure key={index}>
-                                <CloseButton className='position-absolute' size="lg" onClick={() => removeImage(index)} variant="transparent" />
+                        {file && (
+                            <figure>
+                                <CloseButton className='position-absolute' size="lg" onClick={removeImage} variant="transparent" />
                                 <Image src={URL.createObjectURL(file)} alt={file.name} width={200} height={200} className="rounded shadow object-fit-cover" />
                             </figure>
-                        ))}
+                        )}
                     </div>
                 </Stepper.Step>
                 <Stepper.Step label="Ultimo paso" description="Verificar información" icon={<IconCheck />}>
                     <Text size="lg" className='text-center mb-2' >Antes de enviar confirma la información.</Text>
                     <section className='d-flex flex-column align-items-center'>
                         <div className='d-flex flex-wrap gap-2 mt-3 '>
-                            {files.map((file: File, index: number) => (
-                                <figure key={index}>
-                                    <CloseButton className='position-absolute' size="lg" onClick={() => removeImage(index)} variant="transparent" />
+                            {file && (
+                                <figure>
+                                    <CloseButton className='position-absolute' size="lg" onClick={removeImage} variant="transparent" />
                                     <Image src={URL.createObjectURL(file)} alt={file.name} width={200} height={200} className="rounded shadow object-fit-cover" />
                                 </figure>
-                            ))}
+                            )}
                         </div>
                         <Text fw={700}>Nombre: <span className='fw-normal'>{pet.name}</span></Text>
                         <Text fw={700}>Raza: <span className='fw-normal'>{pet.breed}</span></Text>
