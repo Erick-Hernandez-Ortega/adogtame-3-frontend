@@ -1,4 +1,4 @@
-import { petAPIURL } from '@/constants/api-urls';
+import { petAPIURL, petGetAllAvailableAPIURL } from '@/constants/api-urls';
 import axios, { AxiosResponse, AxiosError } from 'axios';
 
 export const createPetPublication = async (pet: FormData, token: string): Promise<AxiosResponse | AxiosError> => {
@@ -13,6 +13,16 @@ export const createPetPublication = async (pet: FormData, token: string): Promis
         })
         .catch((error: AxiosError) => {
             console.log(error);
+            return error;
+        })
+}
+
+export const getAllPets = async (): Promise<any | AxiosError> => {
+    return await axios.get(petGetAllAvailableAPIURL)
+        .then((response: AxiosResponse) => {
+            return response.data;
+        })
+        .catch((error: AxiosError) => {
             return error;
         })
 }

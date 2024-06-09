@@ -1,6 +1,6 @@
 import { LoginErrorResponse, LoginSuccessResponse, UserLogin } from '@/types/login';
 import { User } from '@/types/user';
-import { createPetPublication } from '@/utils/petAPI';
+import { createPetPublication, getAllPets } from '@/utils/petAPI';
 import { getUserByEmail, userLogin, userLogout } from '@/utils/userAPI';
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
@@ -13,6 +13,7 @@ type StoreState = {
     userLogin: (user: UserLogin) => Promise<boolean>;
     userLogOut: (token: string) => Promise<boolean>;
     petPublication: (pet: FormData, token: string) => void;
+    getAllPublications: () => any;
     user: User | null;
 };
 
@@ -54,9 +55,14 @@ export const useStore = create<StoreState>()(
                         return false
                     }
                 },
-                petPublication: (pet: FormData, token: string) => { 
+                petPublication: (pet: FormData, token: string) => {
                     // console.log(pet);
                     const petPublication = createPetPublication(pet, token);
+                },
+                getAllPublications: async (): Promise<any> => {
+                    const { pets } = await getAllPets();
+
+                    return pets;
                 },
             }),
             {

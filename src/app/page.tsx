@@ -1,5 +1,5 @@
 'use client'
-import React, { FC, useEffect } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { Navbar } from './components/navbar/navbar';
 import { Sidebar } from './components/sidebar/sidebar';
 import { FiltrerMenu } from './components/filtrer-menu/filtrer-menu';
@@ -8,12 +8,23 @@ import { Loader } from './components/loader/loader';
 import { useStore } from '@/store/store';
 
 const Home: FC = () => {
-    const { isLoading, changeLoader, user } = useStore()
+    const { isLoading, changeLoader, user, getAllPublications } = useStore()
+    const [pets, setPets] = useState([]);
 
     useEffect(() => {
         if (user) changeLoader(false);
         else setTimeout(() => changeLoader(false), 1000)
     }, [user, changeLoader])
+
+    const getAllPets = useCallback(async (): Promise<void> => {
+        const pets = await getAllPublications();
+        console.log(pets);
+        setPets(pets);
+    }, [getAllPublications]);
+
+    useEffect(() => {
+        getAllPets();
+    }, [getAllPets]);
 
     return (
         isLoading ? <Loader /> :
