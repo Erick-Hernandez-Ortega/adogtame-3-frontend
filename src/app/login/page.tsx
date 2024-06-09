@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { LineStyle, BoxStyle } from '@/types/login';
+import { LineStyle, BoxStyle, OverlayStyle, TextOverlayImage } from '@/types/login';
 import Swal from 'sweetalert2';
 import Link from 'next/link';
 import { emailRegex, passwordRegex } from '@/utils/validations';
@@ -22,7 +22,23 @@ const Login: React.FC = () => {
     const boxStyle: BoxStyle = {
         boxShadow: 'rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px'
     };
-    // ? Esto es una mejora de optimizacion me enseñaron en la chamba 
+    const overlayImage: OverlayStyle = {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    };
+    const textOverlayImage: TextOverlayImage = {
+        color: '#fff', 
+        fontSize: '30px', 
+        fontWeight: 'bold', 
+        textAlign: 'center'
+    };
     const [formLogin, setFormLogin] = useState({
         email: '',
         emailClass: '',
@@ -41,7 +57,7 @@ const Login: React.FC = () => {
                 title: "Error",
                 text: "Credenciales incorrectas",
             });
-        } 
+        }
     }
 
     const validateEmail = (email: string): void => {
@@ -71,7 +87,14 @@ const Login: React.FC = () => {
     return (
         <main className='d-flex justify-content-center align-items-center  min-vh-100 p-2' style={{ backgroundColor: '#b3a5d4' }}>
             <div className="card h-75 d-flex flex-row" style={boxStyle}>
-                <Image src="/img/login/background.jpeg" priority className='d-none d-lg-block' alt="Adogtame Logo" width={529} height={714} />
+                <div style={{ position: 'relative', width: 'fit-content' }}>
+                    <Image src="/img/login/background.jpeg" priority className='d-none d-lg-block' alt="Adogtame Logo" width={529} height={714} />
+                    <div style={overlayImage}>
+                        <p style={textOverlayImage} className='d-none d-lg-block'>¡Bienvenido de vuelta!</p>
+                    </div>
+                </div>
+
+
                 <section className='w-100 p-4'>
                     <div className='d-flex justify-content-center mt-5 mb-3 '>
                         <button type="button" style={{ width: '90%', border: '1px solid #000000' }} className='btn btn-light d-flex align-items-center justify-content-center gap-2 p-2'>
