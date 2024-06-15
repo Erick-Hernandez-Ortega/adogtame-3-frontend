@@ -9,7 +9,7 @@ interface FilterProps {
 export const Filtrer: FC<FilterProps> = ({ children, isActive, onClick }) => {
 
     return (
-        <button type="button" className='btn rounded-4 d-flex gap-1 btn-light' style={{ backgroundColor: isActive ? '#e1dafa' : "#f3f3f3" }} onClick={onClick}>
+        <button type="button" className='btn rounded-4 d-flex gap-1 btn-light' style={{ backgroundColor: isActive ? '#B3A5D4' : "#fff" }} onClick={onClick}>
             {children}
         </button>
     );
