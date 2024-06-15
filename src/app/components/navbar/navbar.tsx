@@ -34,7 +34,7 @@ export const Navbar: FC = () => {
                                 </Button>
                             )}
                             {token === '' && (
-                                <Link href={"/login"} className='btn btn-primary border-0 d-flex align-items-center gap-1' style={{ backgroundColor: '#A87FEB' }}>
+                                <Link href={"/login"} className='btn btn-primary border-0 d-flex align-items-center gap-1 rounded-4' style={{ backgroundColor: '#A87FEB' }}>
                                     <IconLogin /> Iniciar sesión
                                 </Link>
                             )}
