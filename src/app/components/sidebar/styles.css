@@ -1,9 +1,13 @@
 .nav-link.active {
-  background-color: #e1dafa !important;
+  background-color: #B3A5D4 !important;
   color: #000 !important;
 }
 
 .nav-link:hover {
-  background-color: #efebfc;
+  background-color: #f7f4ff;
   color: #382a4b;
+}
+
+.nav-link {
+  background-color: #fff;
 }

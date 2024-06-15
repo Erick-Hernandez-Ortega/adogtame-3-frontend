@@ -18,10 +18,10 @@ export const Sidebar: FC<SidebarProps> = () => {
     }
 
     return (
-        <aside className="d-flex flex-column flex-shrink-0 p-3" style={{ width: '280px' }}>
-            <ul className="nav nav-pills flex-column mb-auto">
+        <aside className="d-flex flex-column flex-shrink-0 p-3 m-2 rounded-4" style={{ width: '280px', backgroundColor: '#DBD2EE' }}>
+            <ul className="nav nav-pills flex-column mb-auto gap-2">
                 <li className="nav-item">
-                    <Link href="/" className={`nav-link ${pathname === '/' ? 'active' : ''} d-flex align-items-center gap-1`} aria-current="page">
+                    <Link href="/" className={`nav-link ${pathname === '/' ? 'active' : ''} d-flex align-items-center gap-1 rounded-4`} aria-current="page">
                         <IconHome color="#000" />
                         Inicio
                     </Link>
@@ -29,7 +29,7 @@ export const Sidebar: FC<SidebarProps> = () => {
                 {token !== '' && (
                     <>
                         <li>
-                            <Link href="#" className="nav-link link-body-emphasis">
+                            <Link href="#" className="nav-link link-body-emphasis rounded-4">
                                 <IconUser />
                                 Perfil
                             </Link>
