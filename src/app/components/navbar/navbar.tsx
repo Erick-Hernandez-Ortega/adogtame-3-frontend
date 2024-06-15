@@ -15,9 +15,9 @@ export const Navbar: FC = () => {
 
     return (
         <>
-            <header className="py-3 border-bottom" style={{ backgroundColor: '#e1dafa' }}>
+            <header className="py-3 border-bottom m-2 mb-0 rounded-4" style={{ backgroundColor: '#B3A5D4' }}>
                 <nav className="container-fluid d-grid gap-3 align-items-center" style={{ gridTemplateColumns: '1fr 2fr' }}>
-                    <div className={`${caveat.className} display-6`} style={{ color: '#35185d' }}>
+                    <div className={`${caveat.className} display-6`}>
                         Adogtame
                     </div>
 
@@ -28,13 +28,13 @@ export const Navbar: FC = () => {
 
                         <div className="flex-shrink-0 d-flex gap-2">
                             {token !== '' && (
-                                <Button onClick={open} className='btn btn-primary border-0 d-flex align-items-center gap-1 ' style={{ backgroundColor: '#a87feb' }}>
+                                <Button onClick={open} className='btn btn-primary border-0 d-flex align-items-center gap-1 rounded-4' style={{ backgroundColor: '#A87FEB' }}>
                                     <IconPlus />
                                     Publicar
                                 </Button>
                             )}
                             {token === '' && (
-                                <Link href={"/login"} className='btn btn-primary border-0 d-flex align-items-center gap-1' style={{ backgroundColor: '#474545' }}>
+                                <Link href={"/login"} className='btn btn-primary border-0 d-flex align-items-center gap-1' style={{ backgroundColor: '#A87FEB' }}>
                                     <IconLogin /> Iniciar sesión
                                 </Link>
                             )}
