@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body>
+      <body style={{ backgroundColor: '#f2f2f2' }}>
         <MantineProvider>{children}</MantineProvider>
       </body>
     </html>
