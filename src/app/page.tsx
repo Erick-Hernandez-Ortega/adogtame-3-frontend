@@ -12,8 +12,8 @@ const Home: FC = () => {
     const [pets, setPets] = useState([]);
 
     const getAllPets = useCallback(async (): Promise<void> => {
-        const pets = await getAllPublications();
-        console.log(pets);
+        const pets: any = await getAllPublications();
+
         setPets(pets);
         changeLoader(false);
     }, [getAllPublications, changeLoader]);
