@@ -9,7 +9,7 @@ interface Props {
 export const PetCard: FC<Props> = ({pet}) => {
 
     return (
-        <article className="d-flex flex-row p-3 gap-3 rounded-4 shadow-sm" style={{ maxWidth: '330px', maxHeight: '180px', backgroundColor: '#D9D9D9' }}>
+        <article className="d-flex flex-row p-3 gap-3 rounded-4 shadow-sm" style={{ maxWidth: '330px', maxHeight: '180px', backgroundColor: '#fff' }}>
             <Image src={pet.dataUrl} className="object-fit-cover rounded-4" alt="pet image" width={130} height={150} />
             <div>
                 <h4 className="m-1">{pet.name}</h4>
