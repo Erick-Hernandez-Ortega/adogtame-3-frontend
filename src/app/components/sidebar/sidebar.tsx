@@ -26,27 +26,8 @@ export const Sidebar: FC<SidebarProps> = () => {
                         Inicio
                     </Link>
                 </li>
-                <li>
-                    <Link href="#" className="nav-link link-body-emphasis d-flex align-items-center gap-1">
-                        <IconSearch />
-                        Buscar
-                    </Link>
-                </li>
-                <li>
-                    <Link href="#" className="nav-link link-body-emphasis d-flex align-items-center gap-1">
-                        <IconCompass />
-                        Explorar
-                    </Link>
-                </li>
                 {token !== '' && (
                     <>
-
-                        <li>
-                            <Link href="#" className="nav-link link-body-emphasis d-flex align-items-center gap-1">
-                                <IconMessages />
-                                Mensajes
-                            </Link>
-                        </li>
                         <li>
                             <Link href="#" className="nav-link link-body-emphasis">
                                 <IconUser />
