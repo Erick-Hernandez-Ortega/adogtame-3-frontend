@@ -2,13 +2,26 @@
 import { Loader } from '@/app/components/loader/loader';
 import { Navbar } from '@/app/components/navbar/navbar';
 import React, { useEffect, useState } from 'react';
+import { useStore } from '@/store/store';
 
-const Pet: React.FC = () => {
-    const [isLoading, setIsLoading] = useState(true);
+interface Props {
+    params: {
+        slug: string
+    }
+}
 
+const Pet: React.FC<Props> = ({ params }) => {
+    const [isLoading, setIsLoading] = useState(false);
+    const { getPetById } = useStore();
+    
     useEffect(() => {
-        // setIsLoading(false);
-    }, []);
+        const getPet = async (): Promise<void> => {
+            const pet = await getPetById(params.slug);
+            console.log(pet);
+        };
+
+        getPet();
+    }, [params.slug, getPetById]);
 
     return (
         <>
@@ -16,9 +29,8 @@ const Pet: React.FC = () => {
             {isLoading ? <Loader />
                 :
                 <main>
-                    <p>soy mascota</p>
+                    <p>soy mascota {params.slug}</p>
                 </main>
-
             }
         </>
     );
