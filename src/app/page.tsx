@@ -31,7 +31,7 @@ const Home: FC = () => {
                     <article className='d-flex flex-column overflow-scroll px-3'>
                         <FiltrerMenu />
                         <div className='d-flex flex-wrap gap-2'>
-                            {pets.length > 0 ?
+                            {pets && pets.length > 0 ?
                                 pets.map((pet, index) => <PetCard key={index} pet={pet} />) 
                                 :
                                 <p>No hay publicaciones</p>
