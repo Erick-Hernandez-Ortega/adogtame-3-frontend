@@ -29,7 +29,7 @@ export const Sidebar: FC<SidebarProps> = () => {
                 {token !== '' && (
                     <>
                         <li>
-                            <Link href="#" className="nav-link link-body-emphasis rounded-4">
+                            <Link href="/profile" className="nav-link link-body-emphasis rounded-4">
                                 <IconUser />
                                 Perfil
                             </Link>
