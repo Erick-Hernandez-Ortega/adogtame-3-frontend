@@ -18,7 +18,7 @@ export const Sidebar: FC<SidebarProps> = () => {
     }
 
     return (
-        <aside className="d-flex flex-column flex-shrink-0 p-3 m-2 rounded-4" style={{ width: '280px', backgroundColor: '#DBD2EE' }}>
+        <aside className="d-none d-lg-flex flex-column flex-shrink-0 p-3 m-2 rounded-4" style={{ width: '280px', backgroundColor: '#DBD2EE' }}>
             <ul className="nav nav-pills flex-column mb-auto gap-2">
                 <li className="nav-item">
                     <Link href="/" className={`nav-link ${pathname === '/' || pathname.startsWith('/mascota/') ? 'active' : ''} d-flex align-items-center gap-1 rounded-4`} aria-current="page">
