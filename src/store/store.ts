@@ -1,7 +1,7 @@
 import { LoginErrorResponse, LoginSuccessResponse, UserLogin } from '@/types/login';
 import { User } from '@/types/user';
 import { createPetPublication, getAllPets, getPetById } from '@/utils/petAPI';
-import { getUserByEmail, userLogin, userLogout } from '@/utils/userAPI';
+import { getUserByEmail, getUserById, userLogin, userLogout } from '@/utils/userAPI';
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 
@@ -16,6 +16,7 @@ type StoreState = {
     getAllPublications: () => any;
     getPetById: (id: string) => any;
     user: User | null;
+    getUserById: (id: string) => any;
 };
 
 export const useStore = create<StoreState>()(
@@ -57,7 +58,6 @@ export const useStore = create<StoreState>()(
                     }
                 },
                 petPublication: (pet: FormData, token: string) => {
-                    // console.log(pet);
                     const petPublication = createPetPublication(pet, token);
                 },
                 getAllPublications: async (): Promise<any> => {
@@ -68,7 +68,11 @@ export const useStore = create<StoreState>()(
                 getPetById: async (id: string) => {
                     const { pet } = await getPetById(id);
                     return pet
-                },                 
+                },
+                getUserById: async (id: string) => {
+                    const user  = await getUserById(id);
+                    return user
+                }                 
             }),
             {
                 name: 'userInfo',

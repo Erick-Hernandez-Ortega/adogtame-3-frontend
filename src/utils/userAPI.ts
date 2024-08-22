@@ -47,3 +47,13 @@ export const getUserByEmail = async (email: string): Promise<AxiosResponse | Axi
             return error;
         })
 }
+
+export const getUserById = async (id: string): Promise<AxiosResponse | AxiosError> => {
+    return await axios.get(`${userAPIURL}id/${id}`)
+        .then((response: AxiosResponse) => {
+            return response.data.user;
+        })
+        .catch((error: AxiosError) => {
+            return error;
+        })
+}
