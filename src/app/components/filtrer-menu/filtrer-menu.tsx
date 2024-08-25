@@ -12,8 +12,8 @@ export const FiltrerMenu: FC = () => {
         { icon: <IconCat />, label: 'Gatos' },
         { icon: <IconGenderMale />, label: 'Machos' },
         { icon: <IconGenderFemale />, label: 'Hembras' },
-        { icon: <IconPaw />, label: 'Cachorros' },
-        { icon: <IconBone />, label: 'Adultos' },
+        // { icon: <IconPaw />, label: 'Cachorros' },
+        // { icon: <IconBone />, label: 'Adultos' },
     ];
 
     const handleClick = (index: number): void => {
