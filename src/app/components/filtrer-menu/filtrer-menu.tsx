@@ -20,7 +20,7 @@ export const FiltrerMenu: FC<any> = ({ onFilterChange }: any ) => {
     };
 
     return (
-        <section className='d-flex flex-row w-100 px-2 py-3 gap-3 '>
+        <section className='d-flex flex-row w-100 px-2 py-3 gap-3 flex-wrap'>
             {filters.map((filter, index: number) => (
                 <Filtrer
                     key={index}
