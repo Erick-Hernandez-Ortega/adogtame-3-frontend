@@ -4,20 +4,19 @@ import { IconBone, IconCat, IconDog, IconGenderFemale, IconGenderMale, IconList,
 import { Filtrer } from '../filtrer/filtrer';
 import { Filtres } from '@/types/filtrer-menu';
 
-export const FiltrerMenu: FC = () => {
+export const FiltrerMenu: FC<any> = ({ onFilterChange }: any ) => {
     const [activeFilter, setActiveFilter] = useState(null as number | null);
     const filters: Filtres[] = [
         { icon: <IconList />, label: 'Todo' },
-        { icon: <IconDog />, label: 'Perros' },
-        { icon: <IconCat />, label: 'Gatos' },
-        { icon: <IconGenderMale />, label: 'Machos' },
-        { icon: <IconGenderFemale />, label: 'Hembras' },
-        // { icon: <IconPaw />, label: 'Cachorros' },
-        // { icon: <IconBone />, label: 'Adultos' },
+        { icon: <IconDog />, label: 'Perros', value: 'Perro' },
+        { icon: <IconCat />, label: 'Gatos', value: 'Gato' },
+        { icon: <IconGenderMale />, label: 'Machos', value: 'Macho' },
+        { icon: <IconGenderFemale />, label: 'Hembras', value: 'Hembra' },
     ];
 
     const handleClick = (index: number): void => {
         setActiveFilter(index === activeFilter ? null : index);
+        onFilterChange(filters[index].value);
     };
 
     return (
