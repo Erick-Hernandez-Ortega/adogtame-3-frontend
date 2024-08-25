@@ -1,6 +1,6 @@
 'use client';
 import React, { FC } from 'react';
-import { IconCompass, IconHome, IconLogout, IconMessages, IconSearch, IconUser } from '@tabler/icons-react';
+import { IconHome, IconLogout, IconPaw, IconUser } from '@tabler/icons-react';
 import Link from 'next/link';
 import "./styles.css";
 import Image from 'next/image';
@@ -21,15 +21,21 @@ export const Sidebar: FC<SidebarProps> = () => {
         <aside className="d-none d-lg-flex flex-column flex-shrink-0 p-3 m-2 rounded-4" style={{ width: '280px', backgroundColor: '#DBD2EE' }}>
             <ul className="nav nav-pills flex-column mb-auto gap-2">
                 <li className="nav-item">
-                    <Link href="/" className={`nav-link ${pathname === '/' || pathname.startsWith('/mascota/') ? 'active' : ''} d-flex align-items-center gap-1 rounded-4`} aria-current="page">
+                    <Link href="/" className={`nav-link ${pathname === '/' || pathname.startsWith('/mascota/') ? 'active' : ''} d-flex align-items-center gap-1 rounded-4 link-body-emphasis`}>
                         <IconHome color="#000" />
                         Inicio
                     </Link>
                 </li>
                 {token !== '' && (
                     <>
-                        <li>
-                            <Link href="/profile" className={`nav-link ${pathname === '/profile' ? 'active' : ''} link-body-emphasis rounded-4`}>
+                        <li className="nav-item">
+                            <Link href="/publicaciones" className={`nav-link ${pathname === '/publicaciones' ? 'active' : ''} link-body-emphasis rounded-4 d-flex align-items-center gap-1`}>
+                                <IconPaw />
+                                Mis publicaciones
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link href="/profile" className={`nav-link ${pathname === '/profile' ? 'active' : ''} link-body-emphasis rounded-4 d-flex align-items-center gap-1`}>
                                 <IconUser />
                                 Perfil
                             </Link>
