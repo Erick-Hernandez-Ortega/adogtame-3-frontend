@@ -1,3 +1,4 @@
+"use client"
 import React, { FC, useState } from 'react';
 import { Button, CloseButton, FileButton, Group, Modal, Select, Stepper, Switch, Text, TextInput, Textarea } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';

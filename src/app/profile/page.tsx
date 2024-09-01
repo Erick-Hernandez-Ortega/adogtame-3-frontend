@@ -1,21 +1,19 @@
-'use client'
-import { useEffect, useState } from "react";
 import { Navbar } from "../components/navbar/navbar"
 import { Sidebar } from "../components/sidebar/sidebar"
-import { User } from "@/types/user";
 import Image from "next/image";
 import { ProfileForm } from "../components/user-profile-form/user-profile-form";
 
-const ProfileView = () => {
-    const [user, setUser] = useState<User>();
+async function getUser() {
+    const userInfo = localStorage.getItem('userInfo');
+    if (userInfo) {
+        const parsedUserInfo = JSON.parse(userInfo);
+        return parsedUserInfo
+    }
+}
 
-    useEffect(() => {
-        const userInfo = localStorage.getItem('userInfo');
-        if (userInfo) {
-            const parsedUserInfo = JSON.parse(userInfo);
-            setUser(parsedUserInfo.state.user);
-        }
-    }, []);
+export default async function ProfileView() {
+
+    const user = await getUser()
 
     if (!user) {
         return <p>Cargando datos...</p>
@@ -55,5 +53,3 @@ const ProfileView = () => {
         )
     }
 }
-
-export default ProfileView;
