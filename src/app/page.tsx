@@ -21,6 +21,7 @@ const Home: FC = () => {
     }, [getAllPublications, changeLoader]);
 
     useEffect(() => {
+        // prueba
         getAllPets();
     }, [getAllPets]);
 
