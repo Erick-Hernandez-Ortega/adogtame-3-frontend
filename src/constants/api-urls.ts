@@ -8,3 +8,4 @@ export const logoutAPIURL = 'http://localhost:3001/user/logout';  // Post
 export const petAPIURL = 'http://localhost:3001/pet';  // Post
 export const petGetAllAvailableAPIURL = 'http://localhost:3001/pet/all-available';  // GET
 export const petGetByIdAPIURL = 'http://localhost:3001/pet/'  // GET
+export const petsGetByUserAPIURL = 'http://localhost:3001/pet/user/'  // GET

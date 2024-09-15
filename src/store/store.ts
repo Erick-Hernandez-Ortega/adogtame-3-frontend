@@ -1,6 +1,6 @@
 import { LoginErrorResponse, LoginSuccessResponse, UserLogin } from '@/types/login';
 import { User } from '@/types/user';
-import { createPetPublication, getAllPets, getPetById } from '@/utils/petAPI';
+import { createPetPublication, getAllPets, getPetById, getPetsByUser } from '@/utils/petAPI';
 import { getUserByEmail, getUserById, userLogin, userLogout } from '@/utils/userAPI';
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
@@ -17,6 +17,7 @@ type StoreState = {
     getPetById: (id: string) => any;
     user: User | null;
     getUserById: (id: string) => any;
+    getPetsByUser: (id: string) => any;
 };
 
 export const useStore = create<StoreState>()(
@@ -72,7 +73,11 @@ export const useStore = create<StoreState>()(
                 getUserById: async (id: string) => {
                     const user  = await getUserById(id);
                     return user
-                }                 
+                },
+                getPetsByUser: async (id: string) => {
+                    const response = await getPetsByUser(id);
+                    return response.pets
+                }
             }),
             {
                 name: 'userInfo',
