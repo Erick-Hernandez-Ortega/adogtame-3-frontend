@@ -15,7 +15,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
 }
-
+// prueba
 export default function RootLayout({
   children,
 }: Readonly<{
