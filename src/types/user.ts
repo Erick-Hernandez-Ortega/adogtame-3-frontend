@@ -8,3 +8,10 @@ export interface User {
     isTokenRemoved: boolean;
     date: string;
 }
+
+export interface UserForm {
+    name: string;
+    username: string;
+    email: string;
+    password?: string;
+}
