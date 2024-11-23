@@ -1,3 +1,4 @@
+"use client";
 import React, { FC } from 'react';
 import { Caveat } from "next/font/google";
 import { IconLogin, IconPlus } from '@tabler/icons-react';
