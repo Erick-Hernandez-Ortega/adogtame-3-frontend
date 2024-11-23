@@ -38,7 +38,7 @@ export const useStore = create<StoreState>()(
                         set({ token: (loginResponse as LoginSuccessResponse).token })
 
                         const userLogin: any = await getUserByEmail(user.email);
-                        Cookies.set('userInfo', JSON.stringify(userLogin), { expires: 7 });
+                        Cookies.set('userInfo', JSON.stringify(userLogin));
 
                         return true
                     } else {
