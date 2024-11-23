@@ -1,18 +1,18 @@
+import { cookies } from "next/headers";
 import { Navbar } from "../components/navbar/navbar"
+import { ProfileForm } from "../components/user-profile-form/user-profile-form";
+import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { Sidebar } from "../components/sidebar/sidebar"
 import Image from "next/image";
-import { ProfileForm } from "../components/user-profile-form/user-profile-form";
 
-async function getUser() {
-    const userInfo = localStorage.getItem('userInfo');
-    if (userInfo) {
-        const parsedUserInfo = JSON.parse(userInfo);
-        return parsedUserInfo
-    }
+async function getUser(): Promise<any> {
+    const userCookie: RequestCookie | undefined = cookies().get('userInfo');
+    const user: any = userCookie ? JSON.parse(userCookie.value) : null;
+
+    return user
 }
 
 export default async function ProfileView() {
-
     const user = await getUser()
 
     if (!user) {
@@ -25,7 +25,6 @@ export default async function ProfileView() {
                 <section className="d-flex" style={{ maxWidth: '99vw' }}>
                     <Sidebar />
                     <div className="d-flex flex-grow-1 mt-2 justify-content-center align-items-start rounded bg-danger">
-                        {/* Contenedor de Información del usuario */}
                         <div className="p-2 d-flex flex-column align-items-center justify-content-center" style={{ width: '50%' }}>
                             <div className="rounded-circle overflow-hidden border mb-4" style={{ width: '150px', height: '150px' }}>
                                 <Image
