@@ -15,9 +15,8 @@ async function getUser(): Promise<any> {
 export default async function ProfileView() {
     const user = await getUser()
 
-    if (!user) {
-        return <p>Cargando datos...</p>
-    }
+    if (!user) return <p>Cargando datos...</p>
+    
     else {
         return (
             <>
