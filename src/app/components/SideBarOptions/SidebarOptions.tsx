@@ -28,7 +28,7 @@ export const SidebarOption = () => {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link href="/profile" className={`nav-link ${pathname === '/profile' ? 'active' : ''} link-body-emphasis rounded-4 d-flex align-items-center gap-1`}>
+                            <Link href="/perfil" className={`nav-link ${pathname === '/perfil' ? 'active' : ''} link-body-emphasis rounded-4 d-flex align-items-center gap-1`}>
                                 <IconUser />
                                 Perfil
                             </Link>
