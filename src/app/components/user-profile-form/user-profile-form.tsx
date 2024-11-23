@@ -1,12 +1,42 @@
-import { User } from '@/types/user';
+'use client'
+import { User, UserForm } from '@/types/user';
+import { updateUser } from '@/utils/userAPI';
+import { useState } from 'react';
 
 type ProfileFormProps = {
     user: User
 }
 
 export const ProfileForm = ({ user }: ProfileFormProps) => {
+
+    const [userForm, setUserForm] = useState<UserForm>({
+        name: '',
+        username: '',
+        email: '',
+        password: ''
+    })
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = e.target
+
+        setUserForm({
+            ...userForm,
+            [name]: value,
+        })
+    }
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+
+        //console.log('User Data:', userFrom);
+
+        const response = await updateUser(userForm)
+        console.log(response);
+        
+    }
+
     return (
-        <form className="w-75">
+        <form className="w-75" onSubmit={handleSubmit}>
             <div className="mb-3">
                 <label htmlFor="name" className="form-label">Name:</label>
                 <input
@@ -14,7 +44,9 @@ export const ProfileForm = ({ user }: ProfileFormProps) => {
                     id="name"
                     name="name"
                     className="form-control"
-                    value={'a'}
+                    placeholder={user.name}
+                    value={userForm.name}
+                    onChange={handleChange}
                 />
             </div>
             <div className="mb-3">
@@ -24,7 +56,9 @@ export const ProfileForm = ({ user }: ProfileFormProps) => {
                     id="username"
                     name="username"
                     className="form-control"
-                    value={'b'}
+                    placeholder={user.username}
+                    value={userForm.username}
+                    onChange={handleChange}
                 />
             </div>
             <div className="mb-3">
@@ -34,7 +68,9 @@ export const ProfileForm = ({ user }: ProfileFormProps) => {
                     id="email"
                     name="email"
                     className="form-control"
-                    value={'c'}
+                    placeholder={user.email}
+                    value={userForm.email}
+                    onChange={handleChange}
                 />
             </div>
             <div className="mb-3">
@@ -44,10 +80,11 @@ export const ProfileForm = ({ user }: ProfileFormProps) => {
                     id="password"
                     name="password"
                     className="form-control"
-                    value={'d'}
+                    value={userForm.password}
+                    onChange={handleChange}
                 />
             </div>
-            <button type="submit" className="btn btn-primary">Update Profile</button>
+            <input type="submit" className="btn btn-primary" value={'Editar Información'} />
         </form>
     );
 }
