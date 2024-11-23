@@ -1,7 +1,8 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
-import { createNewUserAPIURL, loginAPIURL, logoutAPIURL, userAPIURL } from "@/constants/api-urls";
+import { createNewUserAPIURL, loginAPIURL, logoutAPIURL, updateUserAPIURL, userAPIURL } from "@/constants/api-urls";
 import { LoginErrorResponse, LoginSuccessResponse, UserLogin } from '@/types/login';
 import { NewUser } from '@/types/registro';
+import { UserForm } from '@/types/user';
 
 export const userLogin = async (user: UserLogin): Promise<LoginSuccessResponse | LoginErrorResponse> => {
     return await axios.post(loginAPIURL, user)
@@ -56,4 +57,14 @@ export const getUserById = async (id: string): Promise<AxiosResponse | AxiosErro
         .catch((error: AxiosError) => {
             return error;
         })
+}
+
+export const updateUser = async (user: UserForm): Promise<AxiosResponse | AxiosError> => {
+    return await axios.put(updateUserAPIURL, user)
+    .then((response: AxiosResponse) => {
+        return response
+    })
+    .catch((error: AxiosError) => {
+        return Promise.reject(error);
+    });
 }
