@@ -59,10 +59,14 @@ export const getUserById = async (id: string): Promise<AxiosResponse | AxiosErro
         })
 }
 
-export const updateUser = async (user: UserForm): Promise<AxiosResponse | AxiosError> => {
-    return await axios.put(updateUserAPIURL, user)
+export const updateUser = async (user: UserForm, token: String | null): Promise<AxiosResponse | AxiosError> => { 
+    return await axios.put(updateUserAPIURL, user, {
+        headers: {
+            'Authorization': token ? `${token}` : '',
+        }
+    })
     .then((response: AxiosResponse) => {
-        return response
+        return response.data
     })
     .catch((error: AxiosError) => {
         return Promise.reject(error);

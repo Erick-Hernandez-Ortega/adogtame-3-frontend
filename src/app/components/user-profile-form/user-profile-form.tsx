@@ -1,4 +1,5 @@
 'use client'
+import { useStore } from '@/store/store';
 import { User, UserForm } from '@/types/user';
 import { updateUser } from '@/utils/userAPI';
 import { useState } from 'react';
@@ -8,6 +9,8 @@ type ProfileFormProps = {
 }
 
 export const ProfileForm = ({ user }: ProfileFormProps) => {
+
+    const { token } = useStore()
 
     const [userForm, setUserForm] = useState<UserForm>({
         name: '',
@@ -30,7 +33,7 @@ export const ProfileForm = ({ user }: ProfileFormProps) => {
 
         //console.log('User Data:', userFrom);
 
-        const response = await updateUser(userForm)
+        const response = await updateUser(userForm,token)
         console.log(response);
         
     }
