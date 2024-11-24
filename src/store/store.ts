@@ -1,9 +1,10 @@
+import { create } from 'zustand';
+import { createPetPublication, getAllPets, getPetById, getPetsByUser } from '@/utils/petAPI';
+import { devtools, persist } from 'zustand/middleware';
+import { getUserByEmail, getUserById, userLogin, userLogout } from '@/utils/userAPI';
 import { LoginErrorResponse, LoginSuccessResponse, UserLogin } from '@/types/login';
 import { User } from '@/types/user';
-import { createPetPublication, getAllPets, getPetById, getPetsByUser } from '@/utils/petAPI';
-import { getUserByEmail, getUserById, userLogin, userLogout } from '@/utils/userAPI';
-import { create } from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
+import Cookies from 'js-cookie';
 
 type StoreState = {
     isLoading: boolean;
@@ -33,24 +34,20 @@ export const useStore = create<StoreState>()(
                 },
                 userLogin: async (user) => {
                     const loginResponse = await userLogin(user)
-                    //console.log(loginResponse);
                     if ((loginResponse as LoginSuccessResponse).status === 'success') {
                         set({ token: (loginResponse as LoginSuccessResponse).token })
 
-                        // ? Si es correcto el login se guarda user
                         const userLogin: any = await getUserByEmail(user.email);
-                        set({ user: userLogin });
+                        Cookies.set('userInfo', JSON.stringify(userLogin));
 
                         return true
                     } else {
-                        //console.log((loginResponse as LoginErrorResponse).error);
                         set({ loginError: (loginResponse as LoginErrorResponse).error })
                         return false
                     }
                 },
                 userLogOut: async (token) => {
                     const userLogOut = await userLogout(token)
-                    //console.log(userLogOut);
                     if (userLogOut.status === 200) {
                         set({ token: '' })
                         return true
