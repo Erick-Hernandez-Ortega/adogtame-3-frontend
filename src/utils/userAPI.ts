@@ -17,7 +17,6 @@ export const userLogin = async (user: UserLogin): Promise<LoginSuccessResponse |
 export const createNewUser = async (newUser: NewUser): Promise<AxiosResponse | AxiosError> => {
     return await axios.post(createNewUserAPIURL, newUser)
         .then((response: AxiosResponse) => {
-            // console.log(response);
             return response;
         })
         .catch((error: AxiosError) => {
