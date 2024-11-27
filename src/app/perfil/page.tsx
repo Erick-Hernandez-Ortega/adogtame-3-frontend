@@ -29,7 +29,7 @@ export default async function ProfileView() {
                 <Sidebar />
                 <div className="d-flex flex-grow-1 mt-2 justify-content-center align-items-start rounded" style={{ backgroundColor: '#f9f9f9' }}>
                     <div className="p-2 d-flex flex-column align-items-center justify-content-center" style={{ width: '50%' }}>
-                        <div className="rounded-circle overflow-hidden border mb-4" style={{ width: '150px', height: '150px' }}>
+                        <div className="rounded-circle overflow-hidden border mb-4 d-flex justify-content-center align-items-center" style={{ width: '150px', height: '150px' }}>
                             <Image
                                 src={`${getImage()}`}
                                 alt="Profile Image"
