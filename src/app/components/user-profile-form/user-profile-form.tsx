@@ -31,11 +31,7 @@ export const ProfileForm = ({ user }: ProfileFormProps) => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        //console.log('User Data:', userFrom);
-
-        const response = await updateUser(userForm,token)
-        console.log(response);
-        
+        await updateUser(userForm,token)
     }
 
     return (
