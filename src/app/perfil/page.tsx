@@ -25,7 +25,7 @@ export default async function ProfileView() {
     return (
         <>
             <Navbar />
-            <section className="d-flex" style={{ maxWidth: '99vw' }}>
+            <section className="d-flex" style={{ maxWidth: '99vw', minHeight: '90vh' }}>
                 <Sidebar />
                 <div className="d-flex flex-grow-1 mt-2 justify-content-center align-items-start rounded" style={{ backgroundColor: '#f9f9f9' }}>
                     <div className="p-2 d-flex flex-column align-items-center justify-content-center" style={{ width: '50%' }}>
@@ -43,7 +43,6 @@ export default async function ProfileView() {
                         <p>{user.email}</p>
                     </div>
 
-                    {/* Contenedor de Formulario */}
                     <div className="p-2 d-flex flex-column justify-content-center align-items-center rounded" style={{ width: '50%' }}>
                         <ProfileForm
                             user={user}
