@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Proyecto Adogtame
 
-## Getting Started
+Adogtame es una aplicación destinada a facilitar la adopción de mascotas mediante una interfaz web. Este proyecto está desarrollado con tecnologías modernas como **Next.js**, utiliza **Mongo.DB** para el almacenamiento.
 
-First, run the development server:
+## Características principales
+- **Listado de mascotas**: Visualización de mascotas disponibles para adopción.
+- **Responsividad**: Diseño adaptable para dispositivos móviles y de escritorio.
+- **Navegación**: Uso de rutas dinámicas y navegación fluida.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tecnologías utilizadas
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Frontend
+- **Next.js**: Framework para el desarrollo del frontend.
+- **Bootstrap**: Para el diseño responsivo.
+- **Zustand**: Gestión de estado global.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Backend
+- **Node.js** y **Express**: Para la creación de APIs.
+- **MongoDB**: Base de datos para almacenar información de usuarios y mascotas.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Herramientas
+- **ESLint**: Reglas estrictas para mantener un código limpio.
 
-## Learn More
+## Instalación y configuración
 
-To learn more about Next.js, take a look at the following resources:
+### Requisitos previos
+- **Node.js** (v16 o superior)
+- **npm** o **yarn**
+- **MongoDB** tener la clave secreta de conexion.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Instalación
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/Jose-Jaime-Castaneda/adogtame-3-frontend
+   ```
+2. Instalar dependencias:
+   ```bash
+   cd adogtame-3-frontend
+   npm install
+   ```
+3. Configurar las variables de entorno en un archivo `.env`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Scripts disponibles
+- `npm run dev`: Inicia el servidor en modo desarrollo.
+- `npm run build`: Compila el proyecto para producción.
+- `npm run lint`: Ejecuta ESLint para revisar errores de estilo y sintaxis.
 
-## Deploy on Vercel
+## Contribución
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Haz un fork del repositorio.
+2. Crea una rama para tu funcionalidad:
+   ```bash
+   git checkout -b feature/nueva-funcionalidad
+   ```
+3. Realiza los cambios y asegura que pasen las pruebas.
+4. Envía un Pull Request.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
+
+Este proyecto está en constante desarrollo y buscamos contribuir al bienestar animal a través de la tecnología. ¡Gracias por ser parte de Adogtame!
+
